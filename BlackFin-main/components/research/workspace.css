@@ -1,0 +1,86 @@
+.research-shell{display:flex;flex-direction:column;min-height:100vh;background:var(--canvas);color:var(--ink);font-family:var(--font-sans);font-size:13px;line-height:1.45}
+.research-shell>main{flex:1;min-width:0}
+.research-appbar{min-height:64px;padding:0 24px;display:flex;align-items:center;gap:42px;background:var(--ink);border-bottom:1px solid #31434e}
+.research-appbar .brand{display:flex;align-items:center;gap:5px;margin:0;padding:0;color:#f6f8f9;flex-shrink:0}
+.research-appbar .brand svg{width:32px;height:32px}
+.research-appbar .brand-wordmark{font-size:26px}
+.research-appbar nav{display:flex;align-self:stretch;gap:28px}
+.research-appbar nav a{display:flex;align-items:center;min-height:44px;color:#b5c2ca;font-size:14px;font-weight:550;border-bottom:2px solid transparent}
+.research-appbar nav a:hover{color:#fff}
+.research-appbar nav a.active{color:#fff;border-bottom-color:#8faebb}
+.research-appbar :focus-visible{outline:2px solid #c6dce6;outline-offset:3px}
+.research-user{margin-left:auto;color:#b5c2ca;font-size:14px;white-space:nowrap}
+.research-workspace{padding:0 18px;max-width:2400px;margin:auto}.research-heading{display:flex;align-items:center;justify-content:space-between;padding:17px 0 13px;gap:12px}.research-eyebrow{font-size:13px;font-weight:650;letter-spacing:1.4px;color:#69808d}.research-heading h1{font-size:23px;font-weight:550;letter-spacing:-.7px;margin-top:2px}.research-heading-actions{display:flex;gap:8px;align-items:center}
+.research-workspace button{border:1px solid #d4dcdf;background:#fff;color:#40515e;min-height:30px;padding:5px 9px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;gap:5px;font-size:14px;font-weight:500}.research-workspace button:hover{background:#f0f4f5;border-color:#a7bbc5}.research-workspace button.selected{color:#224f62;background:#eaf1f3;border-color:#97b2be}.research-workspace button:disabled{opacity:.5}.research-workspace input:not([type=checkbox]),.research-workspace select{min-height:30px;height:30px;border:1px solid #d4dcdf;border-radius:3px;background:white;font-size:14px;padding:4px 8px;color:#354955;width:auto}.research-workspace label{display:flex;flex-direction:column;font-size:13px;color:#667781;gap:4px}.research-content{display:grid;grid-template-columns:minmax(0,1fr);border:1px solid #d5dfe3;background:white}.dot{display:inline-block;width:7px;height:7px;background:#285c70;border-radius:50%}.dot.gold{background:#a57817;margin-left:7px}.analysis-table{overflow:auto;height:100%;font-size:14px}.analysis-table>p{font-size:14px;color:#73848d;margin:12px 16px;max-width:1000px}.analysis-table table{width:100%;border-collapse:collapse;white-space:nowrap;font-variant-numeric:tabular-nums}.analysis-table th{font-size:13px;color:#78868d;background:#eff2f3;text-align:right;padding:8px 12px;position:sticky;top:0}.analysis-table td{text-align:right;padding:7px 12px;border-bottom:1px solid #edf0f1;font-size:14px}.analysis-table td:first-child,.analysis-table th:first-child{text-align:left}.analysis-table td button{border:0;padding:0;min-height:18px;font-size:14px;color:#285c70}.research-error,.research-message{display:flex;align-items:center;gap:10px;background:#fbf4e8;border:1px solid #ebd9b8;padding:9px 12px;font-size:14px;color:#886438;margin-bottom:8px}.research-message{background:#ecf3f3;color:#426774;border-color:#d4e3e5}.research-message button{margin-left:auto;min-height:20px;border:0;background:transparent}
+@media(min-width:1700px){.research-workspace{padding:0 25px}}
+@media(max-width:780px){.research-appbar{padding:0 12px;gap:16px}.research-appbar nav{gap:14px}.research-user{display:none}.research-appbar .brand-wordmark{font-size:18px}.research-workspace{padding:0 9px}.research-heading{align-items:flex-start}.research-heading h1{font-size:20px}.research-heading-actions{flex-wrap:wrap;justify-content:flex-end;max-width:180px}.research-heading-actions select{max-width:160px}}
+
+/* Keep the desktop screener dense; give smaller screens room to investigate. */
+.research-workspace :is(button,input,select,summary,a):focus-visible{outline:2px solid #285c70;outline-offset:3px}
+.research-workspace button:disabled{cursor:default}
+.research-heading>div,.research-heading-actions{min-width:0}
+.research-error,.research-message{overflow-wrap:anywhere}
+@media(max-width:780px){
+  .research-workspace{padding:0 12px}
+  .research-heading{flex-direction:column;gap:12px;padding:18px 0 12px}
+  .research-heading h1{font-size:23px}
+  .research-heading-actions{width:100%;max-width:none;flex-wrap:nowrap;justify-content:flex-start}
+  .research-heading-actions select{flex:1;min-width:0;max-width:none}
+  .research-workspace button{min-height:44px;font-size:14px;padding:9px 12px}
+  .research-workspace input:not([type=checkbox]),.research-workspace select{min-height:44px;height:44px;font-size:16px;min-width:0;max-width:100%}
+  .research-workspace label{font-size:14px}
+  .analysis-table>p{font-size:14px;line-height:1.6;margin:12px}
+  .analysis-table td button{min-height:44px;padding:8px 0;font-size:14px}
+  .research-message,.research-error{align-items:flex-start;font-size:14px}
+  .research-message button{flex-shrink:0;min-width:44px}
+}
+@media(max-width:360px){
+  .research-workspace{padding:0 8px}
+}
+@media(prefers-reduced-motion:reduce){.research-workspace{scroll-behavior:auto}}
+
+/* BlackFin: restrained surfaces and a clear statistical hierarchy. */
+.research-workspace{padding-inline:24px}
+.research-heading{padding-block:22px 14px}
+.research-heading h1{font-family:var(--font-sans);color:var(--ink);font-size:25px;font-weight:650;letter-spacing:-.8px}
+.research-workspace button{font-family:var(--font-sans)}
+.research-workspace input:not([type=checkbox]),.research-workspace select{font-family:var(--font-sans);border-color:var(--line)}
+.research-heading-actions>button{background:var(--ink);border-color:var(--ink);color:#fff}
+.research-heading-actions>button:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.research-content{border-color:var(--line);box-shadow:0 1px 2px #111f2705}
+@media(max-width:1100px){
+  .research-appbar nav a{min-width:44px;justify-content:center}
+}
+@media(max-width:780px){
+  .research-appbar{padding:14px 16px 0;gap:12px;flex-wrap:wrap;min-height:0}
+  .research-appbar .brand-wordmark{font-size:25px}
+  .research-appbar .brand svg{width:30px;height:30px}
+  .research-appbar nav{flex-basis:100%;gap:24px;min-width:0}
+  .research-appbar nav a{min-height:44px;font-size:14px;white-space:nowrap}
+  .research-workspace{padding-inline:12px}
+  .research-heading{padding-block:18px 12px}
+  .research-heading h1{font-size:23px}
+}
+@media(max-width:360px){
+  .research-appbar{padding-inline:12px}
+  .research-appbar nav{gap:20px}
+  .research-appbar nav a{font-size:14px}
+  .research-workspace{padding-inline:8px}
+}
+
+/* Data stays visible; help and supporting context are available on demand. */
+.research-heading h1{display:flex;align-items:center;gap:6px}
+.inspector-context{display:flex;align-items:center;flex-wrap:wrap;gap:7px}
+.inspector-context{margin:12px 0}
+.research-workspace{padding-bottom:14px}
+@media(max-width:780px){
+  .inspector-context{gap:4px 6px;margin:8px 0}
+  .research-heading h1{line-height:1.3}
+}
+
+/* Shared navigation stays on one line and scrolls within narrow screens. */
+.research-appbar nav{min-width:0;overflow-x:auto;flex-shrink:1}
+.research-appbar nav a{flex-shrink:0;white-space:nowrap}
+
+/* MapLibre's own scale and attribution text follows the type floor. */
+.maplibregl-ctrl-scale,.maplibregl-ctrl-attrib{font-size:13px!important}

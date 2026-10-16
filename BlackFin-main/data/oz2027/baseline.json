@@ -1,0 +1,430 @@
+{
+  "generatedUtc": "2026-10-16T00:49:14.606Z",
+  "note": "Written by node scripts/oz2027-refresh.mjs --check --write-baseline. Each entry is the hash the weekly check compares against.",
+  "entries": {
+    "federal:treasury": {
+      "label": "Treasury OTA OZ2 eligible tracts, September 23, 2026",
+      "url": "https://home.treasury.gov/system/files/131/OZ2-Eligible-Tracts-Data-Transparency-09232026.xlsx",
+      "kind": "file",
+      "sha256": "84ebf65d81cbdecb69ced53eda0e9ffd176285c61063678c99b6fd23b1160b10",
+      "bytes": 6589191
+    },
+    "watch:treasury-qoz-data-transparency": {
+      "label": "Treasury OTA data-transparency page (eligible-tract file and methodology links)",
+      "url": "https://home.treasury.gov/policy-issues/tax-policy/data-transparency/qualified-opportunity-zones",
+      "kind": "page text",
+      "sha256": "21f54dc5bc63148af101aafc0705ea1505966e33498c0b792ba70f2df86a4819",
+      "bytes": 72076
+    },
+    "watch:treasury-eligibility-criteria": {
+      "label": "Treasury eligibility criteria, September 2026",
+      "url": "https://home.treasury.gov/system/files/131/OZ2-Eligibility-Criteria-Data-Transparency-09232026.pdf",
+      "kind": "file",
+      "sha256": "fabf1947e6ff287c60919de9dbeb5ec0b65807bcfc77603fb991987ab43f17c2",
+      "bytes": 118243
+    },
+    "watch:irs-rev-proc-2026-14": {
+      "label": "IRS Rev. Proc. 2026-14 (nomination procedure)",
+      "url": "https://www.irs.gov/pub/irs-drop/rp-26-14.pdf",
+      "kind": "file",
+      "sha256": "bf8538c79170c8129890f6650561d72f1cd83150d9ab1de40bb43bcbdd191032",
+      "bytes": 151066
+    },
+    "watch:irs-rev-proc-2026-14-appendix": {
+      "label": "IRS Rev. Proc. 2026-14 appendix (April eligible list)",
+      "url": "https://www.irs.gov/pub/irs-drop/rp-26-14-appendix.xlsx",
+      "kind": "file",
+      "sha256": "5e21ee2f88edfe871f75b5c5a0b5a6c8cc20d9ac74fffe3c4cc11f4c39c46969",
+      "bytes": 578946
+    },
+    "watch:irs-notice-2026-40": {
+      "label": "IRS Notice 2026-40 (2018-zone transition rules)",
+      "url": "https://www.irs.gov/pub/irs-drop/n-26-40.pdf",
+      "kind": "file",
+      "sha256": "4df687daf79373c8c9ed96913ebe77ad49bbcc8fea122964dc6c7efc97b8d148",
+      "bytes": 170223
+    },
+    "watch:irs-notice-2026-55": {
+      "label": "IRS Notice 2026-55 (request for comments)",
+      "url": "https://www.irs.gov/pub/irs-drop/n-26-55.pdf",
+      "kind": "file",
+      "sha256": "343e1794575e5517d56c3c0d323b22d8cd2c5ce63ec5fb49ee32880147aeeca7",
+      "bytes": 137510
+    },
+    "watch:irs-oz-guidance-release": {
+      "label": "IRS news release IR-2026-45",
+      "url": "https://www.irs.gov/newsroom/treasury-irs-provide-guidance-to-states-for-nominating-census-tracts-as-qualified-opportunity-zones-under-the-one-big-beautiful-bill",
+      "kind": "page text",
+      "sha256": "db6849de39e419f255587a68414936ebfcf4a056a5b08670de1e1382bd1d1e9c",
+      "bytes": 104199
+    },
+    "watch:irs-oz-faq": {
+      "label": "IRS Opportunity Zones FAQ",
+      "url": "https://www.irs.gov/newsroom/opportunity-zones-frequently-asked-questions",
+      "kind": "page text",
+      "sha256": "eae650c1dc099f8e5b3a1e441cfbb8de94c0d1592b3fc603f30769700ef29040",
+      "bytes": 154272
+    },
+    "watch:cdfi-opportunity-zones": {
+      "label": "CDFI Fund Opportunity Zones page (designation lists)",
+      "url": "https://www.cdfifund.gov/opportunity-zones",
+      "kind": "page text",
+      "sha256": "c7ac093fab7646b3c61a504d0aa2c904f2a238885722b153f7d9596b5aa74ea1",
+      "bytes": 52701
+    },
+    "list:az-nominated": {
+      "label": "Arizona: Arizona Commerce Authority (nominated)",
+      "url": "https://services3.arcgis.com/yAFn9nwC5RkYHhEr/arcgis/rest/services/OZ%202%20Nominated%20Tracts/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "ba695b1af1c1b40854f54fe6dc9b7155b09f9afcc57a6dfae9e0972de83832d2",
+      "rows": 125
+    },
+    "document:az-nominated": {
+      "label": "Arizona: Arizona Commerce Authority (nominated) - document",
+      "url": "https://www.azcommerce.com/media/3hvd4iwv/oz-20-nominated-tracts.pdf",
+      "unreachable": "HTTP 403"
+    },
+    "list:ca-final-view": {
+      "label": "California: California Department of Finance (state_recommended)",
+      "url": "https://services8.arcgis.com/d9Au2j3KckAl7VOw/arcgis/rest/services/OZ_final_nom_view/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "bda8bb9b2d9f73236ff40ceb4ea69aeb7f7e42d78aa705181b3862da88d0c6b5",
+      "rows": 620
+    },
+    "document:ca-final-view": {
+      "label": "California: California Department of Finance (state_recommended) - document",
+      "url": "https://www.arcgis.com/home/item.html?id=c704f9e2f5b0422099e87f961950b5da",
+      "kind": "page text",
+      "sha256": "3a0588ffecd77cc781f585821010ffac432bb43fac57539dff406c7a3bdd8b5b",
+      "bytes": 1146
+    },
+    "list:ca-draft-for-comment": {
+      "label": "California: California Department of Finance (draft_for_comment)",
+      "url": "https://dof.ca.gov/media/docs/forecasting/demographics/california-opportunity-zones/OZ_rec_web.xlsx",
+      "kind": "tract rows",
+      "sha256": "ed82707350172206e896fb487429d595f0e828a8115e59dd083ba3fa0d22d18e",
+      "rows": 560
+    },
+    "list:co-nominated": {
+      "label": "Colorado: Colorado OEDIT (nominated)",
+      "url": "https://services3.arcgis.com/DgjqnJA1rgO92Soi/arcgis/rest/services/Census_Tracts_Nominated_for_Opportunity_Zone_20/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "f86b2e4d84dce767178a263224364f53cb42988bb4a0cd2d1be66837c0e52d1a",
+      "rows": 91
+    },
+    "document:co-nominated": {
+      "label": "Colorado: Colorado OEDIT (nominated) - document",
+      "url": "https://oedit.colorado.gov/colorado-opportunity-zone-program",
+      "kind": "page text",
+      "sha256": "568a4ebe6a7b10e999063d9e692d94782e31a197003803577bda347fb9286e3e",
+      "bytes": 100158
+    },
+    "document:dc-preliminary": {
+      "label": "District of Columbia: DC Deputy Mayor for Planning and Economic Development (draft_for_comment) - document",
+      "url": "https://novoco.com/public-media/documents/washington-dc-oz-2.0-webinar-presentation-07152026.pdf",
+      "unreachable": "HTTP 403"
+    },
+    "list:de-nominated": {
+      "label": "Delaware: Office of the Governor of Delaware (nominated)",
+      "url": "https://services1.arcgis.com/bFDgLqS5IyUBQLAd/arcgis/rest/services/Op_Zones_2_GOV_NOM_WFL1/FeatureServer/23",
+      "kind": "tract rows",
+      "sha256": "4f9ec155e90abce6a25394263d433c8eb5b411ecab1d2ed82db8a6ac9b0346a9",
+      "rows": 25
+    },
+    "document:de-nominated": {
+      "label": "Delaware: Office of the Governor of Delaware (nominated) - document",
+      "url": "https://news.delaware.gov/2026/09/28/governor-meyer-announces-25-delaware-communities-nominated-for-next-generation-of-opportunity-zones/",
+      "kind": "page text",
+      "sha256": "a462551cd717fca5842b2d93c1107c52ed1cc3bb8d20c8c99512893e8b7617bd",
+      "bytes": 133764
+    },
+    "list:fl-public-submissions": {
+      "label": "Florida: FloridaCommerce (local_recommended)",
+      "url": "https://services1.arcgis.com/HpJC1O7FLVQlHgaG/arcgis/rest/services/Join_Features_to_oppzones_recommend_tracts15/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "06fee65e6daad14cae60c78ab715c3486b102d8ce93a73db981a7afedac36397",
+      "rows": 823
+    },
+    "document:fl-public-submissions": {
+      "label": "Florida: FloridaCommerce (local_recommended) - document",
+      "url": "https://floridajobs.org/business-growth/opportunity-zones-program",
+      "unreachable": "HTTP 403"
+    },
+    "document:fl-palm-beach-bcc-20260310": {
+      "label": "Florida: Palm Beach County Board of County Commissioners (local_recommended) - document",
+      "url": "http://www.pbcgov.com/pubInf/Agenda/20260310/5C1.pdf",
+      "kind": "file",
+      "sha256": "3093345c08fc1bfaa8506250cfbadd7724e789a24f9041a90892ea4228b7db67",
+      "bytes": 3970909
+    },
+    "document:fl-manatee-bcc-20260519": {
+      "label": "Florida: Manatee County Board of County Commissioners (local_recommended) - document",
+      "url": "https://records.manateeclerk.com/BoardRecords/Browse/Agendas/Board-of-County-Commissioners/2026/05/BC20260519DOC046.pdf",
+      "unreachable": "HTTP 403"
+    },
+    "document:fl-jacksonville-dia-20260406": {
+      "label": "Florida: Jacksonville Downtown Investment Authority (local_recommended) - document",
+      "url": "https://dia.jacksonville.gov/cms/getattachment/9ddaa253-8500-42b9-9f3a-506706d89c4e/RESOLUTION-2026-04-06_OPPORTUNITY-ZONES",
+      "kind": "file",
+      "sha256": "cacc01e0df3d53ce45c578f606919b011825c7a540eb1c7dcd3104b2bf0412c3",
+      "bytes": 588334
+    },
+    "list:ga-submissions": {
+      "label": "Georgia: Georgia Department of Community Affairs (nominated)",
+      "url": "https://services2.arcgis.com/Gqyymy5JISeLzyNM/arcgis/rest/services/GA_OZ_2.0_Census_Tracts/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "b7520a1386d30b3a01e9b86af284a322d6b2938d4d020c006bbe034e97b2fa55",
+      "rows": 238
+    },
+    "document:ga-submissions": {
+      "label": "Georgia: Georgia Department of Community Affairs (nominated) - document",
+      "url": "https://dca.georgia.gov/document/fact-sheets/georgia-federal-opportunity-zone-20-submissions/download",
+      "kind": "file",
+      "sha256": "2fac16f7850a999423f9ba9acb358cafbec5b6ade29e1701da14a01480c9314d",
+      "bytes": 215608
+    },
+    "document:id-certified-tracker": {
+      "label": "Idaho: OpportunityZones.com (copy of the Idaho slate) (certified, not shipped) - document",
+      "url": "https://commerce.idaho.gov/press/united-states-treasury-approves-idaho-opportunity-zone-nominations/",
+      "unreachable": "HTTP 403"
+    },
+    "document:in-nominated": {
+      "label": "Indiana: Indiana Economic Development Corporation (nominated) - document",
+      "url": "https://iedc.in.gov/program/indiana-opportunity-zones/overview/Download/fa31509c-34ce-6748-857a-ff0000c19905/",
+      "kind": "file",
+      "sha256": "b55492790337500e1659b1e062eb02b082666016ab4fa8aad18d08adb8189d8e",
+      "bytes": 48819
+    },
+    "document:ks-nominated-third-party": {
+      "label": "Kansas: Third-party republication of a Kansas open-records response (nominated, not shipped) - document",
+      "url": "https://www.kansascommerce.gov/opportunity-zones-2-0/",
+      "kind": "page text",
+      "sha256": "93b1330866cf974b36c291ff43939fa47775cbd3a0b15710c29490d467c7ed0b",
+      "bytes": 616000
+    },
+    "document:ma-nominated-tracker": {
+      "label": "Massachusetts: OpportunityZones.com (copy of the Mass.gov list) (nominated, not shipped) - document",
+      "url": "https://www.mass.gov/info-details/2026-massachusetts-opportunity-zone-program",
+      "kind": "page text",
+      "sha256": "de58b4982dcbf57c4379c5e029c17ebf0a3c03d5e4268a0f4ac991b4c9cc29d1",
+      "bytes": 193716
+    },
+    "list:ma-state-recommended": {
+      "label": "Massachusetts: Massachusetts EOHLC (state_recommended)",
+      "url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/OZRecommendations_27Aug/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "07a3fe05373bcab19d82add01d0668c4a914f991927d60545a372814d11df5ff",
+      "rows": 103
+    },
+    "list:ma-municipal-requests": {
+      "label": "Massachusetts: Massachusetts EOHLC (municipal designation requests) (local_recommended)",
+      "url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/MA_OZ_DesignationRequests/FeatureServer/2",
+      "kind": "tract rows",
+      "sha256": "82fe1f74ec796cbcf3a2ecca2b815b8a0601fcf0b1fd690c743ae4798486ea18",
+      "rows": 138
+    },
+    "list:md-dhcd-draft": {
+      "label": "Maryland: Maryland DHCD (state_recommended)",
+      "url": "https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/OZ_2_DHCD_Recommendations_2026_Draft/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "ced1b6e6f2c55aa0a18125f3882c4efc6729b2a3887ccafe7139c2f20c5beef0",
+      "rows": 114
+    },
+    "document:md-dhcd-draft": {
+      "label": "Maryland: Maryland DHCD (state_recommended) - document",
+      "url": "https://dhcd.maryland.gov/business-development/maryland-opportunity-zones",
+      "kind": "page text",
+      "sha256": "a7d903b0b77893446322243f9a96fd217e50d865f7d979571a18969b47c84aca",
+      "bytes": 71503
+    },
+    "list:mi-option-a": {
+      "label": "Michigan: Michigan Economic Development Corporation (state_recommended)",
+      "url": "https://services7.arcgis.com/xKqVBwtnpY0z863z/arcgis/rest/services/NominationRecs_A/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "f6bade46bc7dfa1b1e7bdb6d52c64d622b86c44131cd35945313904fc0bb4657",
+      "rows": 214
+    },
+    "list:mi-option-b": {
+      "label": "Michigan: Michigan Economic Development Corporation (state_recommended)",
+      "url": "https://services7.arcgis.com/xKqVBwtnpY0z863z/arcgis/rest/services/NominationRecs_B/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "6abfa99c69de3c25ec5a5edfbd27b054b8bbd2e810a995e032e626c1dd765525",
+      "rows": 214
+    },
+    "list:mo-intake": {
+      "label": "Missouri: Missouri Department of Economic Development (local_recommended)",
+      "url": "https://ded.mo.gov/sites/g/files/zuston466/files/media/file/2026/07/Missouri-Census-Tracts-With-Intake-Forms.xlsx",
+      "kind": "tract rows",
+      "sha256": "a78b28d66f96aa3f54f8e71d12aca761a5e120dd78876f8949682508d04115a3",
+      "rows": 221
+    },
+    "list:mt-governor-selected": {
+      "label": "Montana: Montana Department of Commerce (state_recommended)",
+      "url": "https://services.arcgis.com/iTQUx5ZpNUh47Geb/arcgis/rest/services/Montana_Opportunity_Zones_v2/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "d11f89293db9bfa39eed4453406ff5280d5f36ca44adc75e8a2862ae79b0fe5a",
+      "rows": 20
+    },
+    "document:mt-governor-selected": {
+      "label": "Montana: Montana Department of Commerce (state_recommended) - document",
+      "url": "https://www.arcgis.com/home/item.html?id=979439f9f1db41f4bb0bba4b6a899d18",
+      "kind": "page text",
+      "sha256": "3a0588ffecd77cc781f585821010ffac432bb43fac57539dff406c7a3bdd8b5b",
+      "bytes": 1146
+    },
+    "list:nc-selected": {
+      "label": "North Carolina: North Carolina Department of Commerce (state_recommended)",
+      "url": "https://services7.arcgis.com/SEKZuPu27jfvDQ5b/arcgis/rest/services/Online_OZ_2_0_Map__Final__WFL1/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "9dcaf9c344694a00416d1fb5e93a2b287d6dd8915d03d05518e453dc0dda2ab7",
+      "rows": 202
+    },
+    "document:nc-selected": {
+      "label": "North Carolina: North Carolina Department of Commerce (state_recommended) - document",
+      "url": "https://www.commerce.nc.gov/data-tools-reports/opportunity-zones-north-carolina",
+      "kind": "page text",
+      "sha256": "936255eec7b4a5926cdbf5cf89f94bbee6ff240ae43ffc3fdb33191ff2e75b9a",
+      "bytes": 81855
+    },
+    "list:ne-nominated": {
+      "label": "Nebraska: Nebraska Department of Economic Development (nominated)",
+      "url": "https://gis.ne.gov/agencyext/rest/services/Nebraska_Opportunity_Zones_2027/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "f31d5c293d9fbb0b051a2a67f2474443f2037ab53c56675c434dedffbf1744df",
+      "rows": 28
+    },
+    "document:ne-nominated": {
+      "label": "Nebraska: Nebraska Department of Economic Development (nominated) - document",
+      "url": "https://opportunity.nebraska.gov/programs/business/opportunity-zones/",
+      "kind": "page text",
+      "sha256": "ce912d32b49a94f05c0696dc36c721b01c862ba0a75cb6af80f66f46e64ba5b2",
+      "bytes": 192658
+    },
+    "document:nv-draft": {
+      "label": "Nevada: Nevada GOED (draft_for_comment) - document",
+      "url": "https://www.arcgis.com/sharing/rest/content/items/fd749592cfa142c884bd0d277cf9d05b/data?f=json",
+      "kind": "file",
+      "sha256": "961ccc8eb7bd1e9101549492b640c41408a9736528cf5dcfcd897c02b99e3d49",
+      "bytes": 10222
+    },
+    "list:oh-internal-review": {
+      "label": "Ohio: Ohio Department of Development (state_recommended)",
+      "url": "https://services.arcgis.com/dkqDFFHnFXfm2NMa/arcgis/rest/services/OZ_2_0_Tract_Review_20260923/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "53737dfb540e73c622a10712751b54395b41c390a1d58b28128783f3622a091e",
+      "rows": 130
+    },
+    "document:or-local-nominations": {
+      "label": "Oregon: Business Oregon (local_recommended) - document",
+      "url": "https://www.oregon.gov/biz/programs/Opportunity_Zones/PublishingImages/Lists/Nomination%20Process/AllItems/OZ%202.0%20Local%20Nominations%20Received.pdf",
+      "kind": "file",
+      "sha256": "e448521fb782a11738be611094d50a57a68b5f56cdd8742c8769f4b53b7ff674",
+      "bytes": 250134
+    },
+    "list:pa-draft-nominations": {
+      "label": "Pennsylvania: Pennsylvania DCED (state_recommended)",
+      "url": "https://services6.arcgis.com/532hEgQVqKXr4LOZ/arcgis/rest/services/2026_FOZ_Final_Eligible_Tracts_view/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "9b0359327d3e2162a20d95d3788d0fa6ee9d7e5ea2719cba042bdd94901fb4ee",
+      "rows": 208
+    },
+    "document:pa-draft-nominations": {
+      "label": "Pennsylvania: Pennsylvania DCED (state_recommended) - document",
+      "url": "https://dced.pa.gov/programs-funding/federal-funding-opportunities/qualified-opportunity-zones/",
+      "kind": "page text",
+      "sha256": "69c30065c0f6311697ec278a82a8c1faafb7ab44c75c47aac4e98d7cee3c4c76",
+      "bytes": 163707
+    },
+    "list:sc-nominated": {
+      "label": "South Carolina: South Carolina Department of Commerce (nominated)",
+      "url": "https://services7.arcgis.com/OXA0l385Gi2w8DTl/arcgis/rest/services/tracts/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "0aac60a0d4c6260b245b48dd8ba48f2c0f42f3e65ddb13dbcc696d1bf8bd0c6a",
+      "rows": 112
+    },
+    "document:sc-nominated": {
+      "label": "South Carolina: South Carolina Department of Commerce (nominated) - document",
+      "url": "https://www.sccommerce.com/opportunity-zone",
+      "kind": "page text",
+      "sha256": "b6a9db1bbf10357aad2dce8c8b5deaff334d7176eb6c8fb52628968a48b9206d",
+      "bytes": 61973
+    },
+    "list:tn-shelby-edge": {
+      "label": "Tennessee: EDGE (Economic Development Growth Engine for Memphis and Shelby County) (local_recommended)",
+      "url": "https://services5.arcgis.com/70cbHRI8Lsm6GL6Q/arcgis/rest/services/All_Shelby_County_Proposed_Tracts_for_OZ_2_0_Tier_1_and_2/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "2b7438b05760aea4cadef1b50e28c2919b818cbd4ba1d5e065fa9c9ad2fe8529",
+      "rows": 15
+    },
+    "document:tx-nominated": {
+      "label": "Texas: Office of the Governor of Texas (nominated) - document",
+      "url": "https://gov.texas.gov/uploads/files/business/Texas_OZ_2.0_Nominations_.pdf",
+      "kind": "file",
+      "sha256": "a9bf156cfa9f719004d82ddc36d1b9ef78738de6d1e42ff7ab455e10470fa356",
+      "bytes": 353259
+    },
+    "document:ut-nominated": {
+      "label": "Utah: Utah Governor’s Office of Economic Opportunity (nominated) - document",
+      "url": "https://business.utah.gov/news/utah-recommends-37-census-tracts-for-opportunity-zone-designation/",
+      "kind": "page text",
+      "sha256": "c1e90d6861105259b1e91cdd50f7f0cc1778ec438399200bd3f2f22198a2e154",
+      "bytes": 109328
+    },
+    "document:vi-nominated": {
+      "label": "Virgin Islands: Government of the U.S. Virgin Islands (nominated) - document",
+      "url": "https://www.vi.gov/governor-bryan-announces-nomination-of-all-18-eligible-virgin-islands-census-tracts-for-federal-opportunity-zone-designation/",
+      "kind": "page text",
+      "sha256": "1e877999676ab9d44f092b90fb5029b1432c32fc8293ce951dd5e3c80ab199f5",
+      "bytes": 158209
+    },
+    "list:vt-draft": {
+      "label": "Vermont: Vermont ACCD (draft_for_comment)",
+      "url": "https://map.vermont.gov/opportunity-zones/proposed-data.json",
+      "kind": "tract rows",
+      "sha256": "3614a76942fedee6f0bbb34b8e4ec896183db18c6d1364be6e3b62b63fab1f44",
+      "rows": 25
+    },
+    "list:wa-nominated": {
+      "label": "Washington: Washington State Department of Commerce (nominated)",
+      "url": "https://services.arcgis.com/OFLoAuBVGIvEnc5O/arcgis/rest/services/OZ_hubsite_map/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "1205a9cb0ef3e0af0df3eae0e84a6e1f01a2a073bdaec399187b19375af97d02",
+      "rows": 99
+    },
+    "document:wa-nominated": {
+      "label": "Washington: Washington State Department of Commerce (nominated) - document",
+      "url": "https://www.commerce.wa.gov/governor-ferguson-selects-99-opportunity-zones-to-encourage-private-investment/",
+      "kind": "page text",
+      "sha256": "3262f27af592b2af14cf844f1ac79c51ae8afd39fe3de811c05fa6c2acb5c281",
+      "bytes": 89187
+    },
+    "list:wa-local-applications": {
+      "label": "Washington: Washington State Department of Commerce (local_recommended)",
+      "url": "https://services.arcgis.com/OFLoAuBVGIvEnc5O/arcgis/rest/services/OZ_Nomination_Summary_view/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "ecb5d477e57e80cd01d8437c7fb6831a59f37ce13d5507fc9df09d1e669deb82",
+      "rows": 104
+    },
+    "list:wi-proposed-list": {
+      "label": "Wisconsin: Wisconsin Economic Development Corporation (state_recommended)",
+      "url": "https://services2.arcgis.com/xkpZtaTA2F05Vq7i/arcgis/rest/services/OZ_2.0_Final_Scores_/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "681c8c910f86c3973ec34fdc12bcd0144f27a5c7958c1abf299c1b983019fd3b",
+      "rows": 75
+    },
+    "document:wi-proposed-list": {
+      "label": "Wisconsin: Wisconsin Economic Development Corporation (state_recommended) - document",
+      "url": "https://wedc.org/wisconsin-opportunity-zones/",
+      "kind": "page text",
+      "sha256": "7ddc595dd599e442b4c344b3a6f04c17c340e091931e52c2d5036b6308175a55",
+      "bytes": 412257
+    },
+    "list:wi-community-applications": {
+      "label": "Wisconsin: Wisconsin Economic Development Corporation (local_recommended)",
+      "url": "https://services2.arcgis.com/xkpZtaTA2F05Vq7i/arcgis/rest/services/OZ_2.0_Community_Application_Data_August_2026/FeatureServer/0",
+      "kind": "tract rows",
+      "sha256": "9d600b352a29373c9ad4723020f0000268c08a5d97c635ab775d32e07cf4965d",
+      "rows": 141
+    }
+  }
+}

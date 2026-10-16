@@ -1,0 +1,74 @@
+/* Strategy case pages share the research surface: dense, light borders, 4px corners. */
+.case-page{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;align-items:start;padding-bottom:20px}
+.case-heading{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:18px 0 12px}
+.case-heading h1{font-size:23px;font-weight:650;letter-spacing:-.6px;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.case-heading-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--muted);margin-top:6px}
+.case-back{display:inline-flex;align-items:center;gap:5px;font-size:14px;color:var(--accent);text-decoration:underline;min-height:30px}
+.case-state{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:3px;font-size:13px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--accent-line);background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.case-state.state-rejected,.case-state.state-deferred{background:#f6f0e5;border-color:#e2cf9f;color:#7d5a17}
+.case-state.state-agreed{background:#e9f2ec;border-color:#b9d3c1;color:#2f5d3f}
+.case-state.state-observed_lead{background:#eef1f2;border-color:var(--line);color:var(--muted)}
+.case-section{border:1px solid var(--line);background:#fff;padding:14px 16px;margin-bottom:12px;min-width:0}
+.case-section h2{font-size:14px;text-transform:uppercase;letter-spacing:.07em;font-weight:650;color:var(--soft-ink);display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.case-section h3{font-size:14px;font-weight:650;color:var(--soft-ink);margin:12px 0 6px}
+.case-section p{font-size:14px;color:var(--muted);line-height:1.6;margin:6px 0}
+.case-section dl{display:grid;grid-template-columns:46% minmax(0,1fr);gap:5px 9px;font-size:14px;margin:8px 0}
+.case-section dt{color:var(--muted)}
+.case-section dd{margin:0;text-align:right;overflow-wrap:anywhere;color:var(--soft-ink);font-variant-numeric:tabular-nums}
+.case-section details{border-top:1px solid var(--line-soft);padding:7px 0;font-size:13px}
+.case-section summary{cursor:pointer;color:var(--accent);min-height:24px}
+.case-section code{font-size:13px;word-break:break-all}
+.case-section a{color:var(--accent);text-decoration:underline;font-size:13px}
+.case-trigger{font-size:14px;line-height:1.6;color:var(--ink);margin:0 0 8px}
+.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
+.case-grid .wide{grid-column:1/-1}
+.case-page label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+.case-page label>span{display:flex;align-items:center;gap:5px}
+.case-page input:not([type=checkbox]),.case-page select{width:100%!important;max-width:none}
+.case-page textarea{width:100%;min-height:62px;border:1px solid var(--line);border-radius:3px;background:#fff;font-size:14px;line-height:1.5;padding:6px 8px;color:#354955;font-family:var(--font-sans);resize:vertical}
+.case-page textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+.case-page .field-error{color:var(--red);font-size:13px;margin:0}
+.case-page input[aria-invalid=true],.case-page select[aria-invalid=true],.case-page textarea[aria-invalid=true]{border-color:var(--red)}
+.case-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 10px}
+.case-checks label{flex-direction:row;align-items:center;gap:7px;font-size:14px;color:var(--soft-ink);min-height:26px}
+.case-alternative{border:1px solid var(--line-soft);background:#fbfcfc;padding:10px 12px;margin-bottom:8px}
+.case-alternative-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;font-size:14px;font-weight:650;color:var(--soft-ink)}
+.case-alternative-head button{margin-left:auto}
+.case-scenario{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 10px;margin-top:8px}
+.case-compare{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums;margin-top:10px}
+.case-compare th{font-size:13px;color:var(--muted);text-align:right;padding:6px 8px;background:#eff2f3;font-weight:650}
+.case-compare td{text-align:right;padding:6px 8px;border-bottom:1px solid var(--line-soft)}
+.case-compare td:first-child,.case-compare th:first-child{text-align:left}
+.case-save{position:sticky;bottom:0;background:#fff;border:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:8px;box-shadow:0 -1px 4px #111f2708}
+.case-save .case-save-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.case-save .case-save-row label{flex:1;min-width:200px}
+.case-save button[type=submit]{background:var(--ink);border-color:var(--ink);color:#fff;min-height:34px}
+.case-error-list{margin:0;padding-left:16px;font-size:14px;color:var(--red)}
+.case-error-list a{color:inherit}
+.case-versions table{width:100%;border-collapse:collapse;font-size:14px}
+.case-versions th{font-size:13px;color:var(--muted);text-align:left;padding:6px 8px;background:#eff2f3}
+.case-versions td{padding:6px 8px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.case-list-controls{display:flex;gap:10px;align-items:end;padding:10px 0 12px;flex-wrap:wrap}
+.case-list-controls label{max-width:260px}
+.case-list-empty{padding:40px 16px;text-align:center;color:var(--muted);font-size:14px}
+.case-inspector-list{list-style:none;margin:8px 0;padding:0;display:grid;gap:6px}
+.case-inspector-list li{display:flex;align-items:center;gap:8px;font-size:14px;flex-wrap:wrap}
+.case-inspector-list a{font-size:14px}
+.case-basis{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.case-evidence{border:1px solid var(--line-soft);background:#fbfcfc;padding:10px 12px;margin-bottom:8px}
+.case-evidence-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;font-size:14px;font-weight:650;color:var(--soft-ink)}
+.case-evidence-head button{margin-left:auto}
+.case-evidence .case-checks{margin:6px 0 10px}
+.case-query{font-size:13px;color:var(--muted);margin:6px 0 0;padding:0 0 0 14px}
+.case-query li{margin:2px 0}
+@media(max-width:1100px){.case-page{grid-template-columns:minmax(0,1fr)}.case-page>aside{order:-1}}
+@media(max-width:780px){
+  .case-grid,.case-checks{grid-template-columns:minmax(0,1fr)}
+  .case-scenario{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .case-heading{flex-direction:column;padding:14px 0 10px}
+  .case-page label{font-size:14px}
+  .case-page textarea{font-size:16px;min-height:88px}
+  .case-checks label{min-height:44px}
+  .case-save button[type=submit]{min-height:44px}
+  .case-versions table,.case-compare{display:block;overflow:auto;white-space:nowrap}
+}

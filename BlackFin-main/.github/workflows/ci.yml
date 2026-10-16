@@ -1,0 +1,71 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: radar_test
+          POSTGRES_PASSWORD: isolated-ci-test-password
+          POSTGRES_DB: radar_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U radar_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Validate code, financial references, error checks and injected faults
+        run: npm run check
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+      - run: docker build --tag opportunity-radar:ci .
+      - name: Exercise actual auth sessions against isolated PostgreSQL
+        run: npm run test:integration
+        env:
+          TEST_DATABASE_URL: postgres://radar_test:isolated-ci-test-password@127.0.0.1:5432/radar_test
+      - name: Exercise persisted deal decisions, concurrency and source ownership
+        run: npm run test:database
+        env:
+          DATABASE_URL: postgres://radar_test:isolated-ci-test-password@127.0.0.1:5432/radar_test
+          DATABASE_SSL_MODE: disable
+      - name: Exercise the Linux standalone container
+        shell: bash
+        env:
+          CI_DATABASE_URL: postgres://radar_test:isolated-ci-test-password@127.0.0.1:5432/radar_test
+        run: |
+          docker run --rm --network host --env DATABASE_URL="$CI_DATABASE_URL" --env DATABASE_SSL_MODE=disable --entrypoint node opportunity-radar:ci scripts/db-migrate.mjs
+          docker run --detach --name radar-ci --network host --env PORT=3180 --env DATABASE_URL="$CI_DATABASE_URL" --env DATABASE_SSL_MODE=disable opportunity-radar:ci
+          trap 'docker logs radar-ci; docker rm --force radar-ci' EXIT
+          for attempt in $(seq 1 45); do
+            if curl --fail --silent http://127.0.0.1:3180/api/health > /dev/null; then break; fi
+            sleep 1
+          done
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:3180/api/health)" = 200
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:3180/deals)" = 307
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:3180/api/readiness)" = 503
+          curl --fail --silent http://127.0.0.1:3180/data/florida-counties.geojson | node --input-type=module -e "let data='';for await(const chunk of process.stdin)data+=chunk;const geo=JSON.parse(data);if(geo.features.length!==67)process.exit(1);"
+          node scripts/check-map-assets.mjs http://127.0.0.1:3180
+      - name: Verify atomic research imports and replay against isolated PostgreSQL
+        run: node scripts/research-db-test.mjs
+        env:
+          DATABASE_URL: postgres://radar_test:isolated-ci-test-password@127.0.0.1:5432/radar_test
+          DATABASE_SSL_MODE: disable

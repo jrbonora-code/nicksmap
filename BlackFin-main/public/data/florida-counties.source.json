@@ -1,0 +1,16 @@
+{
+  "title": "Florida county boundaries",
+  "publisher": "U.S. Census Bureau",
+  "service": "Generalized_ACS2025 / State_County / Counties 500K",
+  "vintage": "2025-01-01",
+  "retrievedAt": "2026-09-12T04:58:38.474Z",
+  "scale": "1:500,000",
+  "crs": "EPSG:4326",
+  "featureCount": 67,
+  "sourceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/Generalized_ACS2025/State_County/MapServer/11",
+  "queryUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/Generalized_ACS2025/State_County/MapServer/11/query?where=GEOID%20LIKE%20%2712%25%27&outFields=GEOID%2CBASENAME&returnGeometry=true&outSR=4326&f=geojson",
+  "sourceResponseSha256": "c2ebaf5bdc437af0a484d085fa17e6140db81cdc497f4827f7d9d7627fc4acf1",
+  "processing": "Selected GEOID beginning 12; renamed GEOID/BASENAME to fips/name; retained returned polygon coordinates without simplification; sorted by FIPS.",
+  "limitations": "Generalized display boundaries; not a survey, parcel boundary, property verification, incentive eligibility determination or data-coverage claim.",
+  "attribution": "Source: U.S. Census Bureau"
+}

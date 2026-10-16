@@ -1,0 +1,103 @@
+/* Property intelligence: what the OZ / EB-5 page's layout (oz-eb5.css) does not already cover. Same type scale:
+   16 body and cells, 15 controls, 14 labels and column headers; nothing below 13px. */
+
+/* filters: search, county, balance source, 24-month switch, Filters, Assumptions, then the view switch */
+.rs-filters{position:relative}
+.rs-filters .oz-search{width:260px}
+.rs-filters .oz-select{min-width:190px}
+.rs-filters .rs-src{min-width:210px}
+.rs-fbtn{height:40px!important;padding:0 14px!important}
+.rs-fbtn.on{background:var(--accent-soft)!important;border-color:#a9bfc9!important}
+.rs-count{min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--accent);color:#fff;font-size:14px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.oz-head-right .rs-saved{min-width:220px;height:40px}
+@media (max-width:1559px){
+  .rs-filters .oz-search{width:200px}
+  .rs-filters .oz-select{min-width:160px}
+  .rs-filters .rs-src{min-width:180px}
+}
+@media (max-width:1399px){
+  .rs-page .oz-views button{padding:0 11px}
+  .rs-page:not(.phone) .rs-lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
+
+/* popovers under the filter bar: filters, financing assumptions, save view */
+.rs-pop{position:absolute;top:54px;right:24px;z-index:30;width:min(760px,calc(100% - 48px));max-height:min(620px,calc(100dvh - 220px));overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;box-shadow:0 8px 28px rgba(17,31,39,.16);padding:0 18px 18px}
+.rs-pop-save{width:min(480px,calc(100% - 48px))}
+.rs-pop-hd{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;height:52px;background:var(--surface);border-bottom:1px solid var(--line-soft);margin:0 -18px 14px;padding:0 8px 0 18px}
+.rs-pop-hd strong{font-size:17px}
+.rs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 16px;align-items:end}
+.rs-grid label:not(.oz-cbx),.rs-save label,.rs-form label{display:flex;flex-direction:column;gap:5px;font-size:14px;color:var(--ink-2);min-width:0}
+.rs-grid input:not([type=checkbox]),.rs-grid select,.rs-save input,.rs-form input,.rs-form select{height:40px;border:1px solid var(--line);border-radius:4px;background:var(--surface);padding:0 10px;font:inherit;font-size:16px;color:var(--ink);min-width:0;width:100%}
+.rs-grid .field-error{font-size:14px;color:#9c402c}
+.rs-grid-foot{grid-column:1/-1;display:flex;gap:10px;justify-content:flex-end;padding-top:4px}
+.rs-save{display:flex;align-items:flex-end;gap:10px}
+.rs-save label{flex:1}
+
+.rs-checks{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 22px;padding-bottom:6px;border-bottom:1px solid var(--line-soft)}
+.rs-diamond{flex:none}
+
+/* list */
+.rs-msg{display:flex;align-items:center;gap:12px;margin:10px 16px 0;padding:6px 6px 6px 14px;border:1px solid #cfe0e6;background:var(--accent-soft);border-radius:4px;font-size:15px}
+.rs-msg span{flex:1;min-width:0;overflow-wrap:anywhere}
+.rs-chip{display:inline-flex!important;align-items:center;gap:6px;height:32px;padding:0 10px!important;border:1px solid var(--line)!important;border-radius:16px;background:var(--surface-soft)!important;font-size:15px!important;color:var(--ink)}
+.oz-grid .ag-cell.rs-ellipsis{display:block;line-height:62px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rs-num .a{font-variant-numeric:tabular-nums}
+.oz-grid .ag-header-cell-label{overflow:visible}
+.oz-grid .ag-header-cell-text{overflow:visible;text-overflow:clip}
+
+/* panels: stats, headings, maturity wall */
+.rs-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:14px 20px;border-bottom:1px solid var(--line-soft)}
+.rs-stats>div{min-width:0;padding-right:12px}
+.rs-stats dt{font-size:14px;color:var(--ink-2)}
+.rs-stats dd{margin:2px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:6px}
+.rs-sub{font-size:14px;font-weight:500;color:var(--ink-2);margin-left:6px}
+.rs-h3{font-size:16px;font-weight:700;margin:22px 20px 8px}
+.rs-pad{padding:0 20px}
+.rs-a{color:var(--accent);font-weight:600}
+.rs-bars td{height:44px}
+.rs-bars .rs-barcol{width:190px;min-width:190px;white-space:nowrap}
+.rs-bar{display:inline-block;vertical-align:middle;width:140px;height:14px}
+.rs-bar i{display:block;height:100%;background:#79aec2;border-radius:0 4px 4px 0}
+.rs-next .rs-bar i{background:#1b5a72}
+.rs-muted .rs-bar i{background:#9aa7ad}
+.rs-next td:first-child{font-weight:650}
+.rs-muted td{color:var(--ink-2)}
+.rs-barn{display:inline-block;width:40px;text-align:right;font-variant-numeric:tabular-nums}
+.rs-lenders{font-size:15px;color:var(--ink-2);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rs-wall{padding-bottom:20px}
+.rs-page .oz-stbl .r{white-space:nowrap}
+.rs-stats dd{white-space:nowrap}
+
+/* drawer */
+.rs-form{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:10px;margin:2px 0 10px}
+.rs-n{font-weight:500;color:var(--ink-2);margin-left:8px}
+
+/* map */
+.rs-map-tr{display:flex;gap:8px}
+.oz-page .rs-cluster{width:34px;height:34px;border:0;background:transparent;color:#fff;font:700 14px var(--font-sans);cursor:pointer;border-radius:50%}
+.rs-cluster:focus-visible{outline:2px solid #fff;outline-offset:1px}
+.oz-map[data-drawing] .rs-cluster{pointer-events:none}
+.oz-map[data-flat] .rs-cluster{display:none}
+.rs-dot{width:14px;height:14px;border-radius:50%;flex:none;border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(17,31,39,.25)}
+.rs-dot.ring{background:#fff;border:2.2px solid #4f6470;box-shadow:none}
+
+/* phone */
+.rs-page .oz-sheet-body{flex:1;min-height:0;overflow:auto}
+.oz-page.phone .rs-about-icon{margin-left:auto}
+.oz-page.phone .rs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.oz-page.phone .rs-grid input:not([type=checkbox]),.oz-page.phone .rs-grid select{height:48px}
+.oz-page.phone .rs-stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:10px;padding:12px 16px}
+.oz-page.phone .rs-saved{width:100%;height:48px}
+.oz-page.phone .rs-fbtn{height:48px!important;justify-content:center}
+.oz-page.phone .rs-map-tr .oz-mapbtn{padding:0 12px!important}
+.oz-page.phone .rs-msg{margin:8px 12px 0}
+
+/* The six default columns need about 720px, so this page's list opens wider than the OZ page's (600px, 480px). */
+.rs-page .oz-ws{grid-template-columns:var(--list-w,760px) minmax(0,1fr)}
+.rs-page[data-wide][data-drawer] .oz-ws{grid-template-columns:var(--list-w,760px) minmax(0,1fr) 440px}
+.rs-page .oz-divider{left:calc(var(--list-w,760px) - 5px)}
+@media (max-width:1439px){
+  .rs-page .oz-ws{grid-template-columns:var(--list-w,720px) minmax(0,1fr)}
+  .rs-page[data-wide][data-drawer] .oz-ws{grid-template-columns:var(--list-w,720px) minmax(0,1fr) 440px}
+  .rs-page .oz-divider{left:calc(var(--list-w,720px) - 5px)}
+}

@@ -1,0 +1,32 @@
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.railway/*
+!.railway/railway.ts
+!.railway/README.md
+.local/
+.playwright-cli/
+output/playwright/
+data/*
+# The 2027 OZ source manifest, state table and hand-parsed government list snapshots are reviewed source configuration.
+!data/oz2027/
+# The weekly county-records check compares against the last captured day per county.
+!data/debt/
+!public/data/
+!public/data/**
+public/maplibre/
+uploads/
+*.log
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+
+# Machine-local agent settings and preview launcher
+.claude/launch.json
+.claude/settings.local.json

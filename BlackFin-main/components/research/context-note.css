@@ -1,0 +1,35 @@
+.context-note-trigger.context-info-hint,
+.research-workspace .context-note-trigger.context-info-hint{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:28px;min-width:28px;height:28px;min-height:28px;padding:0;border:0;border-radius:50%;background:transparent;color:#64808e;vertical-align:middle;cursor:pointer}
+.context-note-trigger.context-info-hint:hover,
+.research-workspace .context-note-trigger.context-info-hint:hover{background:#e6eff2;color:#285c70}
+.context-note-trigger.context-badge,
+.research-workspace .context-note-trigger.context-badge{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:28px;max-width:100%;padding:4px 7px;border:1px solid #d6e2e5;border-radius:4px;background:#eef4f5;color:#486572;font:500 13px/1.4 "Segoe UI",Arial,sans-serif;cursor:pointer;vertical-align:middle;white-space:normal;text-align:left}
+.context-note-trigger.context-badge-warning,
+.research-workspace .context-note-trigger.context-badge-warning{border-color:#e4d4b7;background:#f8f2e7;color:#805d25}
+.context-note-trigger.context-badge:hover,
+.research-workspace .context-note-trigger.context-badge:hover{filter:brightness(.97);border-color:#9fb8c4}
+.context-note-trigger svg{flex-shrink:0}
+.context-note-trigger:focus-visible,.context-note-panel :is(button,a):focus-visible{outline:2px solid #285c70;outline-offset:2px}
+.context-note-panel{position:fixed;inset:auto;margin:0;z-index:10000;visibility:hidden;box-sizing:border-box;width:320px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);overflow:auto;overscroll-behavior:contain;padding:14px;border:1px solid #cbd9df;border-radius:7px;background:#fff;color:#405965;box-shadow:0 7px 28px #193b5029;font:400 14px/1.65 "Segoe UI",Arial,sans-serif;overflow-wrap:anywhere;text-transform:none;letter-spacing:normal;text-align:left}
+.context-note-panel:focus{outline:none}
+.context-note-tooltip{width:300px;padding:12px 14px}
+.context-note-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:-4px -4px 8px 0;color:#294f61}
+.context-note-heading strong{font-size:14px;font-weight:600;line-height:1.5}
+.context-note-panel .context-note-close{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;height:30px;min-height:30px;margin:0;padding:0;border:0;border-radius:4px;background:transparent;color:#57727f;cursor:pointer}
+.context-note-panel .context-note-close:hover{background:#eef3f5}
+.context-note-body>:first-child{margin-top:0}
+.context-note-body>:last-child{margin-bottom:0}
+.context-note-panel .context-note-body p{margin:9px 0;font:inherit;color:inherit}
+.context-note-body ul,.context-note-body ol{margin:8px 0;padding-left:19px}
+.context-note-body li{margin:5px 0}
+.context-note-body a{color:#216981;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+.context-note-body code{font-size:14px;overflow-wrap:anywhere;word-break:break-word}
+.context-note-body table{max-width:100%;width:100%;border-collapse:collapse;font-size:14px}
+.context-note-body th,.context-note-body td{padding:5px;text-align:left;border-bottom:1px solid #e1e8eb}
+@media(max-width:780px),(pointer:coarse){
+  .context-note-trigger.context-info-hint,.research-workspace .context-note-trigger.context-info-hint{width:44px;min-width:44px;height:44px;min-height:44px}
+  .context-note-trigger.context-badge,.research-workspace .context-note-trigger.context-badge{min-height:44px;padding:8px;font-size:14px}
+  .context-note-panel{font-size:13px}
+  .context-note-panel .context-note-close{width:44px;height:44px;min-height:44px;flex-basis:44px}
+  .context-note-body a{display:inline-block;padding:6px 0}
+}

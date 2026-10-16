@@ -1,0 +1,48 @@
+name: OZ 2027 source watch
+# Weekly re-hash of every 2027 Opportunity Zone source in data/oz2027/sources.json and the watched Treasury, IRS and
+# CDFI pages, against data/oz2027/baseline.json. Read-only: no secret, no database, no deployment. When anything changed
+# it opens, or updates, the one issue titled "OZ 2027 sources changed".
+on:
+  schedule:
+    - cron: '0 13 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: oz2027-watch
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # The check imports only Node built-ins, so no npm install is needed.
+      - name: Re-hash sources
+        id: check
+        shell: bash
+        run: |
+          set +e
+          node scripts/oz2027-refresh.mjs --check --report oz2027-report.md
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -ge 2 ]; then exit "$code"; fi
+          exit 0
+      - name: Open or update the change issue
+        if: steps.check.outputs.code == '1'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: OZ 2027 sources changed
+        run: |
+          number=$(gh issue list --state open --search "\"$TITLE\" in:title" --json number,title --jq "map(select(.title == env.TITLE)) | .[0].number // empty")
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body-file oz2027-report.md
+            gh issue comment "$number" --body "Re-checked $(date -u +%Y-%m-%d): sources still differ from the baseline. The issue body holds the latest report."
+          else
+            gh issue create --title "$TITLE" --body-file oz2027-report.md
+          fi

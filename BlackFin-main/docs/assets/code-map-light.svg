@@ -1,0 +1,300 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1400" width="1200" height="1400" role="img" aria-labelledby="t d"><title id="t">BlackFin code map</title><desc id="d">Architecture of the BlackFin repository: browser pages and UI, edge proxy and session gate, API routes, domain logic in lib, PostgreSQL, the offline data pipeline, public sources and delivery.</desc><style>@font-face{font-family:'BF Manrope';font-style:normal;font-weight:200 800;src:url(data:font/woff;base64,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) format('woff')}.f{font-family:'BF Manrope',Manrope,'Segoe UI','Helvetica Neue',Arial,sans-serif}.m{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}.ink{fill:#111f27}.bd{fill:#354a56}.mt{fill:#526773}.pth{fill:#284f60}.pth2{fill:#354a56}.idx{fill:#284f60}.lbl{fill:#526773}.chipt{fill:#284f60}.card{fill:#ffffff;stroke:#d5dde1}.ext{fill:#f4f5f5;stroke:#8ea4ae;stroke-dasharray:5 4}.store{fill:#eaf0f2;stroke:#b7cad3}.chip{fill:#eaf0f2}.chip2{fill:#ffffff;stroke:#d5dde1}.bar{fill:#eaf0f2}.hl{stroke:#dde4e7;stroke-width:1}.dv{stroke:#d5dde1;stroke-width:1}.dv2{stroke:#b7cad3;stroke-width:1}.c,.cd{fill:none;stroke:#284f60;stroke-width:1.6;stroke-linejoin:round}.cd{stroke-dasharray:5 4}.ahf{fill:#284f60}.bdg{fill:#284f60}.bdgt{fill:#ffffff}</style><defs><marker id="ah" viewBox="0 0 10 10" refX="4" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 1 L10 5 L0 9 Z" class="ahf"/></marker></defs>
+<rect x=".5" y=".5" width="1199" height="1399" rx="14" fill="#f4f5f5" stroke="#d5dde1"/>
+<g class="ink" transform="translate(36 19) scale(0.52083)"><circle cx="39" cy="3" r="1.8"/><circle cx="33" cy="9" r="1.8"/><circle cx="39" cy="9" r="1.8"/><circle cx="27" cy="15" r="1.8"/><circle cx="33" cy="15" r="1.8"/><circle cx="39" cy="15" r="1.8"/><circle cx="21" cy="21" r="1.8" opacity="0.65"/><circle cx="27" cy="21" r="1.8"/><circle cx="33" cy="21" r="1.8"/><circle cx="39" cy="21" r="1.8"/><circle cx="15" cy="27" r="1.8" opacity="0.65"/><circle cx="21" cy="27" r="1.8" opacity="0.65"/><circle cx="27" cy="27" r="1.8"/><circle cx="33" cy="27" r="1.8"/><circle cx="39" cy="27" r="1.8"/><circle cx="9" cy="33" r="1.8" opacity="0.4"/><circle cx="15" cy="33" r="1.8" opacity="0.65"/><circle cx="21" cy="33" r="1.8" opacity="0.65"/><circle cx="27" cy="33" r="1.8"/><circle cx="33" cy="33" r="1.8"/><circle cx="39" cy="33" r="1.8"/><circle cx="3" cy="39" r="1.8" opacity="0.4"/><circle cx="9" cy="39" r="1.8" opacity="0.4"/><circle cx="15" cy="39" r="1.8" opacity="0.65"/><circle cx="21" cy="39" r="1.8" opacity="0.65"/><circle cx="27" cy="39" r="1.8"/><circle cx="33" cy="39" r="1.8"/><circle cx="39" cy="39" r="1.8"/><circle cx="45" cy="39" r="1.8"/><circle cx="3" cy="45" r="1.8" opacity="0.4"/><circle cx="9" cy="45" r="1.8" opacity="0.4"/><circle cx="15" cy="45" r="1.8" opacity="0.65"/><circle cx="21" cy="45" r="1.8" opacity="0.65"/><circle cx="27" cy="45" r="1.8"/><circle cx="33" cy="45" r="1.8"/><circle cx="39" cy="45" r="1.8"/><circle cx="45" cy="45" r="1.8"/></g>
+<g class="ink" transform="translate(27.202 8.941) scale(0.70588)"><path transform="translate(-10 0)" d="M66.38 44V19.52H76.13Q78.677 19.52 80.282 20.541Q81.887 21.563 82.648 23.125Q83.408 24.688 83.408 26.317Q83.408 28.364 82.466 29.746Q81.523 31.128 79.889 31.604L79.884 30.757Q82.19 31.258 83.364 32.914Q84.539 34.569 84.539 36.656Q84.539 38.84 83.719 40.49Q82.9 42.14 81.253 43.07Q79.606 44 77.15 44ZM70.8 39.892H76.657Q77.661 39.892 78.449 39.476Q79.238 39.06 79.688 38.304Q80.139 37.548 80.139 36.511Q80.139 35.584 79.748 34.852Q79.358 34.12 78.59 33.69Q77.822 33.259 76.713 33.259H70.8ZM70.8 29.184H76.067Q76.899 29.184 77.555 28.88Q78.212 28.575 78.596 27.96Q78.98 27.344 78.98 26.402Q78.98 25.204 78.22 24.399Q77.46 23.594 76.067 23.594H70.8ZM86.406 44V19.01H90.764V44ZM99.108 44.51Q97.122 44.51 95.75 43.754Q94.378 42.998 93.673 41.735Q92.968 40.472 92.968 38.951Q92.968 37.648 93.385 36.593Q93.802 35.538 94.7 34.747Q95.597 33.956 97.062 33.434Q98.13 33.065 99.576 32.779Q101.022 32.494 102.787 32.238Q104.552 31.982 106.579 31.678L105.01 32.548Q105.017 30.781 104.194 29.947Q103.372 29.114 101.423 29.114Q100.295 29.114 99.165 29.651Q98.035 30.189 97.584 31.519L93.62 30.27Q94.31 27.969 96.228 26.55Q98.147 25.13 101.428 25.13Q103.869 25.13 105.741 25.902Q107.612 26.674 108.551 28.504Q109.07 29.496 109.172 30.512Q109.274 31.528 109.274 32.757V44H105.454V40.121L106.041 40.841Q104.749 42.758 103.142 43.634Q101.535 44.51 99.108 44.51ZM100.006 41.056Q101.341 41.056 102.27 40.584Q103.199 40.111 103.753 39.469Q104.307 38.826 104.5 38.311Q104.838 37.546 104.893 36.543Q104.947 35.541 104.947 34.894L106.256 35.254Q104.296 35.572 102.994 35.795Q101.693 36.017 100.829 36.208Q99.965 36.398 99.301 36.631Q98.608 36.897 98.152 37.222Q97.697 37.547 97.467 37.957Q97.238 38.366 97.238 38.891Q97.238 39.542 97.563 40.03Q97.888 40.518 98.505 40.787Q99.122 41.056 100.006 41.056ZM119.854 44.51Q117.007 44.51 114.983 43.239Q112.959 41.968 111.882 39.776Q110.805 37.584 110.801 34.82Q110.805 32.019 111.922 29.828Q113.038 27.636 115.078 26.383Q117.118 25.13 119.916 25.13Q123.105 25.13 125.289 26.735Q127.474 28.34 128.104 31.12L123.752 32.29Q123.314 30.834 122.255 30.02Q121.195 29.207 119.854 29.207Q118.321 29.207 117.338 29.941Q116.354 30.675 115.887 31.944Q115.419 33.214 115.417 34.82Q115.421 37.329 116.538 38.881Q117.655 40.433 119.854 40.433Q121.456 40.433 122.334 39.7Q123.212 38.968 123.656 37.602L128.104 38.557Q127.292 41.422 125.142 42.966Q122.991 44.51 119.854 44.51ZM129.623 44 129.654 19.52H134.074V34.48L140.543 25.64H145.957L139.081 34.82L146.484 44H140.763L134.074 35.16V44ZM146.314 44V19.52H161.161V23.878H150.672V29.581H159.121V33.939H150.672V44ZM162.685 22.974V19.052H167.043V22.974ZM162.685 44V25.64H167.043V44ZM182.872 44V35.242Q182.872 34.501 182.777 33.486Q182.681 32.47 182.289 31.487Q181.896 30.505 181.063 29.859Q180.23 29.213 178.756 29.213Q178.07 29.213 177.348 29.433Q176.626 29.653 176.02 30.229Q175.414 30.805 175.035 31.866Q174.656 32.927 174.656 34.625L172.114 33.474Q172.114 31.217 173.011 29.311Q173.908 27.405 175.679 26.256Q177.45 25.107 180.096 25.107Q182.191 25.107 183.535 25.81Q184.879 26.513 185.648 27.603Q186.417 28.693 186.766 29.896Q187.114 31.1 187.203 32.133Q187.293 33.167 187.293 33.723V44ZM170.236 44V25.64H174.118V31.531H174.656V44Z"/></g>
+<line x1="166.35" y1="24" x2="166.35" y2="44" class="dv"/>
+<text x="180.35" y="40" class="f mt" font-size="17" font-weight="600">Code map</text>
+<text x="1168" y="40" class="f mt" font-size="14" font-weight="600" text-anchor="end">Next.js 16.3 · React 19.3 · TypeScript 5.9 · Node 24 · PostgreSQL · MapLibre GL 6.9 · AG Grid 36</text>
+<line x1="20" y1="58" x2="1180" y2="58" class="hl"/>
+<text x="36" y="89" class="f idx" font-size="14" font-weight="800" letter-spacing="1">01</text>
+<text x="36" y="109" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">BROWSER</text>
+<rect x="148.5" y="69.5" width="539" height="183" rx="8" class="card"/>
+<text x="166" y="98" class="f ink" font-size="17" font-weight="700">Pages</text>
+<text x="226.56" y="98" class="m mt" font-size="14">app/(workspace)/</text>
+<rect x="595.23" y="81" width="78.77" height="24" rx="12.0" class="chip"/>
+<text x="605.23" y="98.04" class="f chipt" font-size="14" font-weight="700">14 pages</text>
+<text x="166" y="129" class="m pth" font-size="15">/research</text>
+<text x="394.45" y="129" class="f bd" font-size="14" font-weight="500">map · screener · evidence · scenarios</text>
+<text x="166" y="151.4" class="m pth" font-size="15">/research/oz-eb5</text>
+<text x="394.45" y="151.4" class="f bd" font-size="14" font-weight="500">OZ × EB-5 rural screen</text>
+<text x="166" y="173.8" class="m pth" font-size="15">/research/cases · /[id]</text>
+<text x="394.45" y="173.8" class="f bd" font-size="14" font-weight="500">strategy cases, append-only versions</text>
+<text x="166" y="196.2" class="m pth2" font-size="15">/deals · /new · /[id]</text>
+<text x="394.45" y="196.2" class="f bd" font-size="14" font-weight="500">deal pipeline</text>
+<text x="166" y="218.6" class="m pth2" font-size="15">/counties</text>
+<text x="394.45" y="218.6" class="f bd" font-size="14" font-weight="500">67 Florida counties</text>
+<text x="166" y="241" class="m pth2" font-size="15">/overview · /ideas · /settings · /sign-in</text>
+<rect x="702.5" y="69.5" width="275" height="183" rx="8" class="card"/>
+<text x="720" y="98" class="f ink" font-size="17" font-weight="700">UI</text>
+<text x="747.01" y="98" class="m mt" font-size="14">components/</text>
+<text x="720" y="130" class="m pth" font-size="15">research/</text>
+<rect x="825.83" y="113" width="138.17" height="24" rx="12.0" class="chip"/>
+<text x="835.83" y="130.04" class="f chipt" font-size="14" font-weight="700">10 files · 1.5k lines</text>
+<text x="720" y="153" class="f bd" font-size="14" font-weight="500">AG Grid screener · MapLibre map</text>
+<text x="720" y="171" class="f bd" font-size="14" font-weight="500">property preview · OZ × EB-5 · cases</text>
+<text x="720" y="202" class="m pth" font-size="15">workspace/</text>
+<rect x="829.97" y="185" width="134.03" height="24" rx="12.0" class="chip"/>
+<text x="839.97" y="202.04" class="f chipt" font-size="14" font-weight="700">12 files · 541 lines</text>
+<text x="720" y="225" class="f bd" font-size="14" font-weight="500">deals · screening · counties · ideas</text>
+<rect x="1006.5" y="69.5" width="161" height="183" rx="8" class="ext"/>
+<text x="1024" y="98" class="f ink" font-size="17" font-weight="700">Basemaps</text>
+<text x="1024" y="130" class="f ink" font-size="15" font-weight="600">OpenStreetMap</text>
+<text x="1024" y="149" class="f mt" font-size="14" font-weight="500">map tiles</text>
+<text x="1024" y="176" class="f ink" font-size="15" font-weight="600">USGS NAIP</text>
+<text x="1024" y="195" class="f mt" font-size="14" font-weight="500">aerial imagery</text>
+<text x="1024" y="224" class="f mt" font-size="14" font-weight="500">loaded straight</text>
+<text x="1024" y="242" class="f mt" font-size="14" font-weight="500">into the browser</text>
+<path d="M1006 161 L984 161" class="c" marker-end="url(#ah)"/>
+<line x1="20" y1="264" x2="1180" y2="264" class="hl"/>
+<text x="36" y="295" class="f idx" font-size="14" font-weight="800" letter-spacing="1">02</text>
+<text x="36" y="315" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">EDGE</text>
+<rect x="148.5" y="275.5" width="299" height="65" rx="8" class="card"/>
+<text x="166" y="302" class="m ink" font-size="17" font-weight="600">proxy.ts</text>
+<text x="166" y="324" class="f bd" font-size="14" font-weight="500">script nonce · CSP · no-store</text>
+<rect x="476.5" y="275.5" width="329" height="65" rx="8" class="card"/>
+<text x="494" y="302" class="m ink" font-size="17" font-weight="600">app/(workspace)/layout.tsx</text>
+<text x="494" y="324" class="f bd" font-size="14" font-weight="500">session gate · allowlist, else /sign-in</text>
+<path d="M448 308 L470 308" class="c" marker-end="url(#ah)"/>
+<path d="M298 253 L298 269" class="c" marker-end="url(#ah)"/>
+<text x="956" y="297" class="m pth" font-size="14">fetch /api/research/*</text>
+<text x="956" y="316" class="f bd" font-size="14" font-weight="500">JSON → grid and map</text>
+<text x="956" y="335" class="f mt" font-size="14" font-weight="500">proxy.ts skips /api</text>
+<line x1="20" y1="352" x2="1180" y2="352" class="hl"/>
+<text x="36" y="383" class="f idx" font-size="14" font-weight="800" letter-spacing="1">03</text>
+<text x="36" y="403" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">API</text>
+<text x="36" y="427" class="m mt" font-size="14">app/api/</text>
+<text x="36" y="445" class="f mt" font-size="14" font-weight="500">16 routes</text>
+<rect x="148.5" y="363.5" width="155" height="117" rx="8" class="card"/>
+<text x="164" y="391" class="f ink" font-size="17" font-weight="700">Platform</text>
+<text x="164" y="410" class="m mt" font-size="14">app/api/</text>
+<text x="164" y="433" class="m pth" font-size="15">health</text>
+<text x="164" y="452" class="m pth" font-size="15">readiness</text>
+<text x="164" y="471" class="m pth" font-size="15">auth/[...all]</text>
+<rect x="316.5" y="363.5" width="173" height="117" rx="8" class="card"/>
+<text x="332" y="391" class="f ink" font-size="17" font-weight="700">Server Actions</text>
+<text x="332" y="410" class="m mt" font-size="14">app/(workspace)/</text>
+<text x="332" y="433" class="m pth" font-size="15">actions.ts</text>
+<text x="332" y="452" class="f bd" font-size="14" font-weight="500">deal edits</text>
+<text x="332" y="470" class="f mt" font-size="14" font-weight="500">session-checked</text>
+<rect x="502.5" y="363.5" width="205" height="117" rx="8" class="card"/>
+<text x="518" y="391" class="f ink" font-size="17" font-weight="700">OZ × EB-5</text>
+<text x="518" y="410" class="m mt" font-size="14">research/oz-eb5/</text>
+<text x="518" y="433" class="m pth" font-size="15">/</text>
+<text x="518" y="452" class="m pth" font-size="15">/geometry</text>
+<text x="518" y="471" class="m pth" font-size="15">/markets</text>
+<text x="616.35" y="433" class="m pth" font-size="15">/assets</text>
+<text x="616.35" y="452" class="m pth" font-size="15">/site</text>
+<rect x="720.5" y="363.5" width="163" height="117" rx="8" class="card"/>
+<text x="736" y="391" class="f ink" font-size="17" font-weight="700">Strategy cases</text>
+<text x="736" y="410" class="m mt" font-size="14">research/cases/</text>
+<text x="736" y="433" class="m pth" font-size="15">/</text>
+<text x="736" y="452" class="m pth" font-size="15">/[id]</text>
+<rect x="896.5" y="363.5" width="271" height="117" rx="8" class="card"/>
+<text x="912" y="391" class="f ink" font-size="17" font-weight="700">Research</text>
+<text x="912" y="410" class="m mt" font-size="14">research/</text>
+<text x="912" y="433" class="m pth" font-size="15">/</text>
+<text x="912" y="452" class="m pth" font-size="15">/property/[id]</text>
+<text x="912" y="471" class="m pth" font-size="15">/tracts</text>
+<text x="1056.1" y="433" class="m pth" font-size="15">/licenses</text>
+<text x="1056.1" y="452" class="m pth" font-size="15">/history</text>
+<text x="1056.1" y="471" class="m pth" font-size="15">/saved</text>
+<rect x="502.5" y="491.5" width="665" height="31" rx="6" class="bar"/>
+<text x="516" y="512" class="m pth" font-size="14">lib/research/http.ts</text>
+<text x="700.8" y="512" class="f bd" font-size="14" font-weight="500">wraps the research handlers · 400 / 401 / 503 · same-origin POSTs</text>
+<path d="M940 253 L940 357" class="c" marker-end="url(#ah)"/>
+<line x1="20" y1="534" x2="1180" y2="534" class="hl"/>
+<text x="36" y="565" class="f idx" font-size="14" font-weight="800" letter-spacing="1">04</text>
+<text x="36" y="585" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">DOMAIN</text>
+<text x="36" y="603" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">LOGIC</text>
+<text x="36" y="627" class="m mt" font-size="14">lib/</text>
+<text x="36" y="645" class="f mt" font-size="14" font-weight="500">32 files</text>
+<text x="36" y="663" class="f mt" font-size="14" font-weight="500">3.0k lines</text>
+<rect x="148.5" y="545.5" width="149" height="133" rx="8" class="card"/>
+<text x="166" y="573" class="m ink" font-size="17" font-weight="600">auth/</text>
+<rect x="166" y="584" width="130.47" height="24" rx="12.0" class="chip"/>
+<text x="176" y="601.04" class="f chipt" font-size="14" font-weight="700">5 files · 249 lines</text>
+<text x="166" y="629" class="f bd" font-size="14" font-weight="500">Better Auth</text>
+<text x="166" y="647" class="f bd" font-size="14" font-weight="500">allowlist</text>
+<text x="166" y="665" class="f bd" font-size="14" font-weight="500">sessions</text>
+<rect x="310.5" y="545.5" width="231" height="133" rx="8" class="card"/>
+<text x="328" y="573" class="m ink" font-size="17" font-weight="600">workspace/</text>
+<rect x="328" y="584" width="131.53" height="24" rx="12.0" class="chip"/>
+<text x="338" y="601.04" class="f chipt" font-size="14" font-weight="700">9 files · 802 lines</text>
+<text x="328" y="629" class="f bd" font-size="14" font-weight="500">Postgres pool · idempotency</text>
+<text x="328" y="647" class="f bd" font-size="14" font-weight="500">deals, evidence, mandate</text>
+<text x="328" y="665" class="f bd" font-size="14" font-weight="500">snapshots · money</text>
+<rect x="554.5" y="545.5" width="139" height="133" rx="8" class="card"/>
+<text x="572" y="573" class="m ink" font-size="17" font-weight="600">ideas/</text>
+<rect x="572" y="584" width="118.23" height="24" rx="12.0" class="chip"/>
+<text x="582" y="601.04" class="f chipt" font-size="14" font-weight="700">1 file · 136 lines</text>
+<text x="572" y="629" class="f bd" font-size="14" font-weight="500">strategy</text>
+<text x="572" y="647" class="f bd" font-size="14" font-weight="500">catalogue</text>
+<rect x="706.5" y="545.5" width="195" height="133" rx="8" class="card"/>
+<text x="724" y="573" class="m ink" font-size="17" font-weight="600">finance/</text>
+<rect x="724" y="584" width="130.21" height="24" rx="12.0" class="chip"/>
+<text x="734" y="601.04" class="f chipt" font-size="14" font-weight="700">4 files · 363 lines</text>
+<text x="724" y="629" class="f bd" font-size="14" font-weight="500">NOI · DSCR</text>
+<text x="724" y="647" class="f bd" font-size="14" font-weight="500">loan sizing · dated NPV</text>
+<text x="724" y="665" class="f bd" font-size="14" font-weight="500">sources and uses</text>
+<rect x="914.5" y="545.5" width="253" height="133" rx="8" class="card"/>
+<text x="932" y="573" class="m ink" font-size="17" font-weight="600">research/</text>
+<rect x="932" y="584" width="137.41" height="24" rx="12.0" class="chip"/>
+<text x="942" y="601.04" class="f chipt" font-size="14" font-weight="700">13 files · 1.4k lines</text>
+<text x="932" y="629" class="f bd" font-size="14" font-weight="500">query and screening</text>
+<text x="932" y="647" class="f bd" font-size="14" font-weight="500">scenario finance · debt records</text>
+<text x="932" y="665" class="f bd" font-size="14" font-weight="500">strategy cases · OZ/EB-5 rules</text>
+<path d="M228 481 L228 539" class="c" marker-end="url(#ah)"/>
+<path d="M404 481 L404 539" class="c" marker-end="url(#ah)"/>
+<path d="M1044 523 L1044 539" class="c" marker-end="url(#ah)"/>
+<line x1="20" y1="690" x2="1180" y2="690" class="hl"/>
+<text x="36" y="721" class="f idx" font-size="14" font-weight="800" letter-spacing="1">05</text>
+<text x="36" y="741" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">DATA</text>
+<text x="36" y="765" class="m mt" font-size="14">db/</text>
+<text x="36" y="783" class="f mt" font-size="14" font-weight="500">8 migrations</text>
+<rect x="148.5" y="701.5" width="827" height="147" rx="8" class="store"/>
+<text x="166" y="730" class="f ink" font-size="17" font-weight="700">PostgreSQL</text>
+<text x="276.4" y="730" class="f mt" font-size="14" font-weight="500">PostGIS image · geometry as jsonb · raw pg, no ORM</text>
+<line x1="752" y1="745" x2="752" y2="835" class="dv2"/>
+<text x="166" y="761" class="m pth" font-size="15">workspace_*</text>
+<text x="388.45" y="761" class="f mt" font-size="14" font-weight="500">001 · 003</text>
+<text x="166" y="784" class="m pth" font-size="15">auth_*</text>
+<text x="388.45" y="784" class="f mt" font-size="14" font-weight="500">002 · 004</text>
+<text x="166" y="807" class="m pth" font-size="15">research_strategy_case*</text>
+<text x="388.45" y="807" class="f mt" font-size="14" font-weight="500">006</text>
+<text x="482" y="761" class="m pth" font-size="15">research_*</text>
+<text x="649.55" y="761" class="f mt" font-size="14" font-weight="500">005</text>
+<text x="482" y="780" class="f bd" font-size="14" font-weight="500">snapshots · properties · sources</text>
+<text x="482" y="798" class="f bd" font-size="14" font-weight="500">observations · tracts · saved analyses</text>
+<text x="482" y="819" class="m pth" font-size="15">research_oz_eb5_*</text>
+<text x="649.55" y="819" class="f mt" font-size="14" font-weight="500">007 · 008</text>
+<text x="482" y="837" class="f bd" font-size="14" font-weight="500">runs · tracts · CBSA counties · assets</text>
+<text x="770" y="761" class="m ink" font-size="17" font-weight="600">db/001–008</text>
+<text x="770" y="783" class="f bd" font-size="14" font-weight="500">checksum-locked</text>
+<text x="770" y="801" class="f bd" font-size="14" font-weight="500">applied explicitly by</text>
+<text x="770" y="820" class="m pth" font-size="14">scripts/db-migrate.mjs</text>
+<rect x="1000.5" y="701.5" width="167" height="147" rx="8" class="ext"/>
+<text x="1018" y="730" class="f ink" font-size="17" font-weight="700">Live calls</text>
+<text x="1018" y="758" class="f ink" font-size="15" font-weight="600">Census Geocoder</text>
+<text x="1018" y="778" class="f ink" font-size="15" font-weight="600">HUD Opportunity</text>
+<text x="1018" y="796" class="f ink" font-size="15" font-weight="600">Zones (ArcGIS)</text>
+<text x="1018" y="821" class="f mt" font-size="14" font-weight="500">at request time</text>
+<text x="1018" y="839" class="f mt" font-size="14" font-weight="500">15 s timeout</text>
+<path d="M233 679 L233 695" class="c" marker-end="url(#ah)"/>
+<path d="M437 679 L437 695" class="c" marker-end="url(#ah)"/>
+<path d="M950 679 L950 695" class="c" marker-end="url(#ah)"/>
+<path d="M1084 679 L1084 695" class="c" marker-end="url(#ah)"/>
+<line x1="20" y1="860" x2="1180" y2="860" class="hl"/>
+<text x="36" y="891" class="f idx" font-size="14" font-weight="800" letter-spacing="1">06</text>
+<text x="36" y="911" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">OFFLINE</text>
+<text x="36" y="929" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">PIPELINE</text>
+<text x="36" y="953" class="m mt" font-size="14">scripts/</text>
+<text x="36" y="971" class="f mt" font-size="14" font-weight="500">run by hand</text>
+<text x="150" y="886" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.2">FLORIDA RESEARCH</text>
+<rect x="148.5" y="896.5" width="501" height="51" rx="8" class="card"/>
+<circle cx="177" cy="922" r="10.5" class="bdg"/>
+<text x="177" y="927" class="f bdgt" font-size="14" font-weight="800" text-anchor="middle">3</text>
+<text x="200" y="918" class="m ink" font-size="15" font-weight="600">import-research.mjs</text>
+<text x="200" y="937" class="f bd" font-size="14" font-weight="500">atomic import → research_* tables</text>
+<rect x="148.5" y="966.5" width="501" height="51" rx="8" class="card"/>
+<circle cx="177" cy="992" r="10.5" class="bdg"/>
+<text x="177" y="997" class="f bdgt" font-size="14" font-weight="800" text-anchor="middle">2</text>
+<text x="200" y="988" class="m ink" font-size="15" font-weight="600">prepare-research.mjs</text>
+<text x="200" y="1007" class="f bd" font-size="14" font-weight="500">property, mortgage, DBPR licenses + IRS appendix → .gz bundle</text>
+<path d="M540 966 L540 954" class="cd" marker-end="url(#ah)"/>
+<rect x="148.5" y="1036.5" width="501" height="51" rx="8" class="card"/>
+<circle cx="177" cy="1062" r="10.5" class="bdg"/>
+<text x="177" y="1067" class="f bdgt" font-size="14" font-weight="800" text-anchor="middle">1</text>
+<text x="200" y="1058" class="m ink" font-size="15" font-weight="600">acquire-oz-geometry.mjs</text>
+<text x="200" y="1077" class="f bd" font-size="14" font-weight="500">Census TIGERweb tracts</text>
+<path d="M540 1036 L540 1024" class="cd" marker-end="url(#ah)"/>
+<path d="M540 896 L540 855" class="cd" marker-end="url(#ah)"/>
+<text x="668" y="886" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.2">NATIONAL OZ × EB-5</text>
+<rect x="666.5" y="896.5" width="501" height="51" rx="8" class="card"/>
+<circle cx="695" cy="922" r="10.5" class="bdg"/>
+<text x="695" y="927" class="f bdgt" font-size="14" font-weight="800" text-anchor="middle">3</text>
+<text x="718" y="918" class="m ink" font-size="15" font-weight="600">import-oz-eb5.mjs</text>
+<text x="718" y="937" class="f bd" font-size="14" font-weight="500">→ research_oz_eb5_* tables</text>
+<rect x="666.5" y="966.5" width="501" height="51" rx="8" class="card"/>
+<circle cx="695" cy="992" r="10.5" class="bdg"/>
+<text x="695" y="997" class="f bdgt" font-size="14" font-weight="800" text-anchor="middle">2</text>
+<text x="718" y="988" class="m ink" font-size="15" font-weight="600">prepare-oz-eb5-import.mjs</text>
+<text x="718" y="1007" class="f bd" font-size="14" font-weight="500">HUD OZ polygons, simplified</text>
+<path d="M930 966 L930 954" class="cd" marker-end="url(#ah)"/>
+<rect x="666.5" y="1036.5" width="501" height="51" rx="8" class="card"/>
+<circle cx="695" cy="1062" r="10.5" class="bdg"/>
+<text x="695" y="1067" class="f bdgt" font-size="14" font-weight="800" text-anchor="middle">1</text>
+<text x="718" y="1058" class="m ink" font-size="15" font-weight="600">oz-eb5-screen.mjs</text>
+<text x="718" y="1077" class="f bd" font-size="14" font-weight="500">tracts · sites · parcels · assets → CSV / XLSX + manifest</text>
+<path d="M930 1036 L930 1024" class="cd" marker-end="url(#ah)"/>
+<path d="M930 896 L930 855" class="cd" marker-end="url(#ah)"/>
+<line x1="20" y1="1099" x2="1180" y2="1099" class="hl"/>
+<text x="36" y="1130" class="f idx" font-size="14" font-weight="800" letter-spacing="1">07</text>
+<text x="36" y="1150" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">PUBLIC</text>
+<text x="36" y="1168" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">SOURCES</text>
+<rect x="148.5" y="1110.5" width="1019" height="114" rx="8" class="ext"/>
+<rect x="274.44" y="1123" width="199.06" height="25" rx="12.5" class="chip2"/>
+<text x="284.44" y="1140.54" class="f bd" font-size="14" font-weight="600">CDFI Fund OZ designations</text>
+<rect x="480.5" y="1123" width="138.34" height="25" rx="12.5" class="chip2"/>
+<text x="490.5" y="1140.54" class="f bd" font-size="14" font-weight="600">OMB 23-01 CBSAs</text>
+<rect x="625.83" y="1123" width="281.04" height="25" rx="12.5" class="chip2"/>
+<text x="635.83" y="1140.54" class="f bd" font-size="14" font-weight="600">Census 2010→2020 tract relationships</text>
+<rect x="913.87" y="1123" width="127.69" height="25" rx="12.5" class="chip2"/>
+<text x="923.87" y="1140.54" class="f bd" font-size="14" font-weight="600">IIUSA TEA tracts</text>
+<rect x="225.21" y="1155" width="232.87" height="25" rx="12.5" class="chip2"/>
+<text x="235.21" y="1172.54" class="f bd" font-size="14" font-weight="600">IRS Rev. Proc. 2026-14 appendix</text>
+<rect x="465.08" y="1155" width="158.09" height="25" rx="12.5" class="chip2"/>
+<text x="475.08" y="1172.54" class="f bd" font-size="14" font-weight="600">CDFI NMTC eligibility</text>
+<rect x="630.17" y="1155" width="276" height="25" rx="12.5" class="chip2"/>
+<text x="640.17" y="1172.54" class="f bd" font-size="14" font-weight="600">ACS 2020–24 · B01003 · B17001 · B19113</text>
+<rect x="913.17" y="1155" width="177.62" height="25" rx="12.5" class="chip2"/>
+<text x="923.17" y="1172.54" class="f bd" font-size="14" font-weight="600">HUD QCT and DDA 2026</text>
+<rect x="250.66" y="1187" width="127.27" height="25" rx="12.5" class="chip2"/>
+<text x="260.66" y="1204.54" class="f bd" font-size="14" font-weight="600">HUD multifamily</text>
+<rect x="384.92" y="1187" width="137.82" height="25" rx="12.5" class="chip2"/>
+<text x="394.92" y="1204.54" class="f bd" font-size="14" font-weight="600">USDA Section 515</text>
+<rect x="529.74" y="1187" width="92.06" height="25" rx="12.5" class="chip2"/>
+<text x="539.74" y="1204.54" class="f bd" font-size="14" font-weight="600">HUD LIHTC</text>
+<rect x="628.81" y="1187" width="141.04" height="25" rx="12.5" class="chip2"/>
+<text x="638.81" y="1204.54" class="f bd" font-size="14" font-weight="600">Census TIGERweb</text>
+<rect x="776.84" y="1187" width="136.21" height="25" rx="12.5" class="chip2"/>
+<text x="786.84" y="1204.54" class="f bd" font-size="14" font-weight="600">HUD OZ polygons</text>
+<rect x="920.05" y="1187" width="145.29" height="25" rx="12.5" class="chip2"/>
+<text x="930.05" y="1204.54" class="f bd" font-size="14" font-weight="600">State parcel layers</text>
+<path d="M540 1110 L540 1094" class="cd" marker-end="url(#ah)"/>
+<path d="M930 1110 L930 1094" class="cd" marker-end="url(#ah)"/>
+<line x1="20" y1="1236" x2="1180" y2="1236" class="hl"/>
+<text x="36" y="1267" class="f idx" font-size="14" font-weight="800" letter-spacing="1">08</text>
+<text x="36" y="1287" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">SHIP</text>
+<rect x="148.5" y="1247.5" width="255" height="95" rx="8" class="card"/>
+<text x="166" y="1275" class="f ink" font-size="17" font-weight="700">GitHub Actions CI</text>
+<text x="166" y="1296" class="f bd" font-size="14" font-weight="500">lint · typecheck · 160+ tests</text>
+<text x="166" y="1314" class="f bd" font-size="14" font-weight="500">Docker build</text>
+<text x="166" y="1332" class="f bd" font-size="14" font-weight="500">integration on PostgreSQL</text>
+<rect x="430.5" y="1247.5" width="223" height="95" rx="8" class="card"/>
+<text x="448" y="1275" class="f ink" font-size="17" font-weight="700">Docker</text>
+<text x="448" y="1296" class="m pth" font-size="14">node:24-bookworm-slim</text>
+<text x="448" y="1314" class="f bd" font-size="14" font-weight="500">multi-stage build</text>
+<text x="448" y="1332" class="f bd" font-size="14" font-weight="500">standalone Next.js</text>
+<rect x="680.5" y="1247.5" width="283" height="95" rx="8" class="card"/>
+<text x="698" y="1275" class="f ink" font-size="17" font-weight="700">Railway</text>
+<text x="698" y="1296" class="f bd" font-size="14" font-weight="500">web service · /api/health</text>
+<text x="698" y="1314" class="f bd" font-size="14" font-weight="500">Postgres · 50 GB volume</text>
+<text x="698" y="1332" class="m pth" font-size="14">.railway/railway.ts</text>
+<rect x="978.5" y="1247.5" width="189" height="95" rx="8" class="card"/>
+<text x="996" y="1275" class="f ink" font-size="17" font-weight="700">Sentry</text>
+<text x="996" y="1296" class="f bd" font-size="14" font-weight="500">server errors via</text>
+<text x="996" y="1314" class="m pth" font-size="14">instrumentation.ts</text>
+<path d="M404 1281 L424 1281" class="c" marker-end="url(#ah)"/>
+<path d="M654 1281 L674 1281" class="c" marker-end="url(#ah)"/>
+<line x1="20" y1="1354" x2="1180" y2="1354" class="hl"/>
+<rect x="148.5" y="1369.5" width="29" height="17" rx="4" class="card"/>
+<text x="188" y="1383" class="f bd" font-size="14" font-weight="500">Repository code</text>
+<rect x="328.12" y="1369.5" width="29" height="17" rx="4" class="ext"/>
+<text x="367.62" y="1383" class="f bd" font-size="14" font-weight="500">External service or source</text>
+<rect x="570.29" y="1369.5" width="29" height="17" rx="4" class="store"/>
+<text x="609.79" y="1383" class="f bd" font-size="14" font-weight="500">Data store</text>
+<path d="M710.72 1378 L738.72 1378" class="c" marker-end="url(#ah)"/>
+<text x="754.72" y="1383" class="f bd" font-size="14" font-weight="500">Runtime request</text>
+<path d="M896.86 1378 L924.86 1378" class="cd" marker-end="url(#ah)"/>
+<text x="940.86" y="1383" class="f bd" font-size="14" font-weight="500">Offline load, run by hand</text>
+<text x="36" y="1383" class="f lbl" font-size="14" font-weight="800" letter-spacing="1.6">LEGEND</text></svg>

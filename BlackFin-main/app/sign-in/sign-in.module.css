@@ -1,0 +1,119 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: #f4f5f5;
+  color: var(--ink);
+  font-family: var(--font-sans), sans-serif;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto;
+  margin-bottom: 32px;
+  color: var(--ink);
+  font-size: 32px;
+}
+.brandMark { width: 42px; height: 42px; flex: none; color: inherit; }
+.page :global(.research-disclosures) { margin-top: auto; padding: 32px 0 0; width: 100%; max-width: 1100px; color: #667078; font-size: 11px; letter-spacing: normal; line-height: 1.7; text-align: center; }
+.card {
+  width: 100%;
+  max-width: 432px;
+  padding: 36px;
+  background: #fff;
+  border: 1px solid #d8dddf;
+  border-radius: 4px;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #526773;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .8px;
+}
+.card h1 {
+  margin: 20px 0 28px;
+  color: var(--ink);
+  font-size: 28px;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -.6px;
+}
+.card p { margin: 0 0 24px; color: #526773; font-size: 14px; line-height: 1.6; }
+.card button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.card button:hover:not(:disabled) { background: var(--accent-hover); border-color: var(--accent-hover); }
+.card button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.card button:disabled { opacity: .6; cursor: wait; }
+.card .note { margin: 20px 0 0; color: #526773; font-size: 13px; line-height: 1.6; }
+.card .note a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.card .note a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.card .error { margin: 20px 0 0; color: var(--red); font-size: 13px; }
+.card .success {
+  margin: 0 0 20px;
+  padding: 11px 14px;
+  border: 1px solid #bad0c2;
+  border-radius: 4px;
+  background: #f2f7f4;
+  color: #24543a;
+  font-size: 13px;
+}
+.form { display: grid; gap: 8px; margin: 0; }
+.form label { margin-top: 6px; color: var(--ink); font-size: 13px; font-weight: 650; }
+.form input {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 12px;
+  border: 1px solid #bac5ca;
+  border-radius: 4px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+}
+.form input:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-color: var(--accent); }
+.form input[aria-invalid="true"] { border-color: var(--red); }
+.form input:disabled { opacity: .7; }
+.form button { margin-top: 12px; }
+.card .form .error { margin: 0; }
+.card .divider { margin: 18px 0; color: #526773; font-size: 11px; letter-spacing: .8px; text-align: center; }
+.setup { padding: 16px; border: 1px solid #d8dddf; border-radius: 4px; background: #f4f5f5; font-size: 13px; }
+.setup strong { color: var(--ink); font-weight: 650; }
+.setup p { margin: 6px 0 0; font-size: 13px; }
+.page footer { margin-top: 28px; color: #526773; font-size: 10px; letter-spacing: .8px; text-align: center; }
+@media (max-width: 480px) {
+  .page { padding: 32px 16px; }
+  .card { padding: 28px 24px; }
+  .brand { margin-bottom: 28px; font-size: 30px; }
+  .brandMark { width: 38px; height: 38px; }
+  .card h1 { font-size: 26px; }
+}

@@ -1,0 +1,23 @@
+# Private workspace execution decision
+
+> Historical September 12 selection record. The product reset withdrew its manual-first delivery scope; the source-to-analysis release selectively retained identity and database infrastructure. Follow [the release contract](../RESEARCH-RELEASE.md) and [current architecture](../ARCHITECTURE.md). Old sequencing and runtime statements below do not override current instructions.
+
+Date: 2026-09-12. Status: implementation choice under the user's instruction to execute the reviewed plan. Investment mandate and data subscriptions remain undecided.
+
+Use the existing personal private GitHub repository and Railway project. Next.js and React serve the workspace. A Railway PostgreSQL service using the stable PostGIS 18/3.6 image keeps future spatial joins available; the initial county map uses a checked-in official geographic source. No listing or paid market-data service is activated.
+
+Railway's first database creation used its default PostgreSQL 18 template despite the requested image. This was caught by checking the actual deployment image before applying a follow-up plan. Keep major version 18 and the existing PGDATA=/var/lib/postgresql/data/pgdata mount; do not downgrade the initialized cluster to 17. The follow-up image change preserves this empty cluster and its volume. Spatial extensions must be verified separately before spatial SQL is enabled.
+
+Better Auth 1.7.4 supplies GitHub OAuth with PKCE/state, signed cookies, database sessions and revocation. Access is restricted to one or two immutable numeric GitHub IDs; no email matching or automatic account linking grants access. GitHub two-factor authentication must be enabled at sign-in. Sessions expire after eight hours without sliding renewal. Every data read and action verifies the session and the current allowlist. Removing an ID on the server blocks its existing sessions. GitHub account recovery remains with GitHub; recovery must still be exercised with the owner before operational release.
+
+The owner account's two-factor setting was verified through GitHub's authenticated user API on this date. That is not proof of a completed application OAuth flow. OAuth credentials and callback validation are separate deployment gates.
+
+Database access uses Railway's private network. Plain transport is permitted only for this private hostname or loopback tests, with certificate verification required for Internet hosts. Do not enable a public database proxy with this configuration. GitHub credentials and authentication secrets stay in runtime variables, never in source control. OAuth tokens are encrypted by Better Auth before storage.
+
+Manual deal and evidence metadata entry and deterministic annual operating screens are the first usable slice. Inputs, calculated output, model version, complete selected evidence, deal metadata, mandate state, actor and decision rationale are frozen together. Saved screens are screening records, not investment approval or calibrated success predictions. Sensitive imports and document uploads remain unavailable until storage authorization and a measured production restore exercise are complete. An isolated local restore demonstrates the procedure only, not production recovery.
+
+Financial module review must resolve the two NPV defects before release. A fresh independent review is required after integration. D01–D05 and reference-workbook signoff remain open; no default return hurdle, leverage mandate or incentive eligibility is manufactured.
+
+Addendum, 2026-09-12 (later the same day): email-and-password sign-in was chosen for the allowlisted users so that no secret has to be shared. Each allowlisted address creates its own password once while `ACCOUNT_SETUP_OPEN` is true; the owner closes the flag afterwards. GitHub sign-in remains an optional method behind its own three variables; a GitHub identity is still admitted only by numeric ID, an address match never admits it, and a password can never be attached to it. `db/004-email-identities.sql` makes the GitHub columns optional with an all-or-nothing shape constraint. Accepted trade-off: the setup window is first-come, so it stays open only while the two users create their passwords. A separate fix the same day removed `input: false` from the GitHub identity fields, which Better Auth 1.7.4 had been dropping from the provider profile.
+
+Sources inspected: [Better Auth Next.js integration](https://better-auth.com/docs/integrations/next), [GitHub OAuth](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps), [PostGIS image](https://github.com/postgis/docker-postgis), [Railway private database networking](https://docs.railway.com/databases/build-a-database-service).

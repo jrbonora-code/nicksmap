@@ -1,0 +1,274 @@
+# Multifamily Opportunity Radar
+
+Product concept and technology options • September 12, 2026
+
+This brief presents ideas for a future Codex project. The proposed scope, architecture, workflows, and tools are discussion material rather than instructions to a coding agent. “Multifamily Opportunity Radar” is a working name.
+
+**The product idea**
+
+A private web application to research properties, loans, sponsors, and development activity in one place. It could combine public records, licensed real estate data, uploaded documents, financial calculations, and AI-assisted research into a continuously updated screening platform.
+
+The central question would be: **Which properties or sponsors deserve attention, why now, and what evidence supports that conclusion?**
+
+Potential opportunities include refinancing, recapitalization, acquisitions, development partnerships, and operational improvements. Distress would be one screening category. A well-performing property with a routine upcoming maturity could be a financing opportunity; a poorly performing property might have no attractive transaction available.
+
+The initial product could serve a small private workspace. Its value would come from organizing fragmented information, preserving changes over time, applying consistent underwriting judgment, and remembering what subsequent investigation revealed.
+
+**A useful initial market**
+
+Southwest Florida seems like a sensible opening geography: Lee County first, followed by Collier and Charlotte. A first inventory could emphasize apartment communities with roughly 50 or more units, while allowing known smaller properties to be added manually. Parcel classifications alone would not establish apartment-community boundaries or reliable unit counts.
+
+The platform could be useful from its first file imports. A parcel inventory, a licensed spreadsheet export, and uploaded mortgage documents could support a real workflow while direct vendor connections are being evaluated. An unavailable connector could have an honest “not connected” status; its absence would leave the relevant fields unknown.
+
+**What the interface could look like**
+
+A desktop-oriented research workspace seems appropriate: a searchable table, an optional map, saved screens, and a property detail panel. A compact AI research panel could sit alongside the evidence and calculations.
+
+| View | Possible contents | Main decision it supports |
+|---|---|---|
+| Opportunity table | Property, sponsor, units, loan type, reported maturity, financial period, screening reasons, data completeness, review status | Which opportunities warrant attention? |
+| Map | The same filtered properties, parcel context, selected boundaries, nearby competing properties | Where are the opportunities concentrated? |
+| Property detail | Ownership, debt, financial snapshots, documents, assumptions, event timeline, notes | What do we actually know about this property? |
+| Sponsor portfolio | Related properties and entities, upcoming maturities, recent changes, unresolved ownership links | Is this an isolated event or a portfolio pattern? |
+| Changes feed | New documents, revised maturity dates, performance changes, corrected matches | What changed since the last review? |
+| Research inbox | Ambiguous matches, conflicting dates, failed imports, missing financials | Which information problems are blocking analysis? |
+| Sources and imports | Connected providers, uploaded files, refresh history, coverage, usage and errors | How dependable and complete is the dataset? |
+
+A selected financial figure could open its supporting document page or source record. A screening reason could open the rule and input values that generated it. Saved views could preserve both filter choices and underwriting assumptions.
+
+**The information we could obtain**
+
+The data strategy has three layers: public information, licensed information, and voluntarily supplied private deal information. Availability would vary by property and source.
+
+| Source | Potential contribution | Practical access path and limitation |
+|---|---|---|
+| Lee County Property Appraiser | Parcel inventory, owner names, tax-roll attributes and identifiers | Downloadable parcel files are published monthly. A snapshot import could establish the local inventory. These records do not provide current operating statements. [Parcel downloads](https://www.leepa.org/Roll/TaxRoll.aspx) |
+| County Clerk recorded documents | Mortgages, deeds, assignments, liens and related recorded instruments | Document uploads or supported official downloads could provide source material. Recorded principal is different from an outstanding balance or payoff; later agreements may be absent. [Lee County property records](https://www.leeclerk.org/departments/official-records-services/property-records) |
+| Florida Sunbiz | Entity filings, managers/officers, registered agents and addresses | Filed documents can help connect entities. Shared registered agents alone do not establish common ownership. [Search guide](https://dos.fl.gov/sunbiz/search/guides/corporation-records/) |
+| Yardi Matrix | Apartment ownership, rents, occupancy, loan details and maturities when available | A licensed export could be an initial connection. Vendor DSCR/LTV estimates would remain labeled estimates, and financial benchmarks would remain distinct from a property’s actual accounts. [Multifamily product](https://www.yardimatrix.com/property-types/multifamily/) |
+| Trepp | Covered loans, historical financials, property information, servicing status and maturity data | Licensed exports, data services or its advertised MCP connection could supply information. Securitized-loan coverage does not imply complete visibility into private bank loans. [Multifamily coverage](https://www.trepp.com/multifamily-solutions) |
+| CRED iQ | An alternative source of loan, property, ownership and valuation information | Its advertised platform/API could be evaluated against the same property sample. Exact fields, geography, refresh dates and usage rights remain vendor-specific. [Platform](https://www.cred-iq.com/) |
+| Property websites and public announcements | Advertised rents, concessions, management changes, reported transactions and project updates | Selected pages could be captured with dates and source links. Advertised availability is not a verified rent roll, and a removed listing does not prove a lease. |
+| Local planning and permitting systems | Applications, approvals, permit activity and project history | Jurisdiction-specific connections could follow later. A gap in online activity would be a question to investigate, not proof that construction stopped. |
+| Owner, lender or authorized broker uploads | Current rent rolls, T12s, loan amendments, reserves, payoff statements and completion budgets | Private deal documents would enrich an existing property record within the authorized workspace. Their reporting periods and verification status would remain visible. |
+
+Local clerk automation, planning feeds, CRED iQ access, and paid vendor integrations are proposed connections, not integrations already tested for this project. No paid dataset has been queried or acquired in preparing this brief.
+
+**The current AI connection worth investigating**
+
+Trepp advertises MCP tools for property/loan screening, loan details, historical financials, comparable properties and estimated pro formas. This creates a possible route for an AI research feature to retrieve structured real estate information through a licensed connection. Its published tool list includes `search_properties_loans`, `get_loans`, `get_financials`, `get_proforma`, and `get_comparables`. Actual access, field coverage, pricing, permitted retention and permitted AI use would depend on the arrangement with Trepp. [Trepp MCP capabilities](https://www.trepp.com/agent-optimized-mcp-servers-treppai)
+
+A conventional export or API could still be the simpler backbone for bulk screening and historical snapshots. MCP could complement that with interactive research. The application’s own property IDs, observations, calculations and notes could remain independent of any one provider.
+
+**The evidence model**
+
+Every important value could retain its source and history. A single “confidence score” would hide several different questions, so the application could show them separately:
+
+| Attribute | Example | Meaning |
+|---|---|---|
+| Source type | Recorded instrument, servicer report, owner financials, public advertisement | Where the information originated |
+| Value basis | Source-reported, calculated estimate, analyst assumption | Whether the number was reported or modeled |
+| Relevant date or period | Financial year ended December 2025 | When the information describes the property |
+| Publication/recording date | February 2026 | When the source released or recorded it |
+| Retrieval date | September 2026 | When the platform acquired it |
+| Review status | Unreviewed, checked against source, conflicting | What someone has verified |
+| Extraction quality | Clear field, ambiguous scan, missing page | How dependable the document extraction appears |
+
+“Checked against source” would confirm faithful extraction, not audit the truth of an owner’s financial statement. A document retrieved today could still contain stale financials.
+
+Useful distinctions include original mortgage amount versus outstanding balance; scheduled maturity versus confirmed extension; asking rent versus effective collected rent; tax assessment versus market-value estimate; physical occupancy versus economic occupancy; NOI versus lender-adjusted net cash flow.
+
+Conflicting observations could coexist. A proposed current value could point to the chosen observation and the reason it was selected. Corrections and analyst overrides could remain reversible, with their author and date preserved. An unchanged source document would not generate another “new event” on every import.
+
+**Three initial screening experiences**
+
+1. **Loan maturity and refinancing.** Properties with an upcoming reported maturity, their current financial reporting period, and estimated refinancing proceeds under a selected lender scenario. Missing extension information could appear as an unresolved issue. A positive estimated funding gap would indicate further investigation, not establish a default or a motivated seller.
+
+2. **Acquisition and recapitalization research.** Properties with combinations of weak reported performance, increasing concessions, debt exposure, ownership changes or recent recorded events. The output could describe the specific combination rather than assigning an unexplained “distressed” label. Positive operating trends and conservative debt could also be searchable.
+
+3. **Sponsor portfolio monitoring.** Related properties, loans and events grouped around a reasonably established sponsor. A concentration of upcoming maturities could justify a closer look. The app would show how much of the sponsor’s portfolio is actually covered and avoid treating unknown debts as zero.
+
+Later possibilities include development-pipeline tracking, property expense benchmarking and site feasibility. These could become separate modules once the property, source and loan relationships are dependable.
+
+**How the screening logic could work**
+
+Transparent filters and reason codes seem like a stronger first approach than a trained prediction model. Example reasons might be “reported maturity within 12 months,” “estimated funding gap under selected assumptions,” “servicer reports special servicing,” or “financial statements too old for current analysis.”
+
+Each result could display three separate dimensions:
+
+- **Opportunity fit:** how closely the property matches the user’s selected strategy.
+- **Timing:** a known or reported event that makes the situation relevant now.
+- **Evidence quality:** coverage, age, contradictions and completeness of the supporting data.
+
+A missing maturity would mean “unknown,” not “no maturity risk.” A failed data refresh would mean “refresh failed,” not “no changes.” A missing cash-flow input could leave refinancing analysis incomplete rather than produce a misleading zero.
+
+An initial ranked view could use user-adjustable rules and bands such as high/medium/low research priority. Any numerical weights would be configurable judgments, not calibrated probabilities of default or expected investment returns. Historical outcomes could later show which signals actually helped.
+
+**A refinancing calculator concept**
+
+The financial engine could use ordinary, reproducible calculations, with the AI explaining the result and its assumptions. Each scenario could retain its input observations, analyst assumptions, valuation date and formula version.
+
+Possible inputs include normalized annual NOI for valuation, lender-adjusted cash flow for DSCR/debt yield, selected cap rate, interest rate, amortization, interest-only treatment, maximum LTV, minimum DSCR, minimum debt yield, debt payoff, fees, reserves and additional obligations.
+
+For a simplified single-property, single-senior-loan case:
+
+```text
+Estimated property value = valuation NOI / selected cap rate
+
+LTV-supported proceeds = estimated property value × maximum LTV
+
+DSCR-supported proceeds = lender-adjusted annual cash flow
+                          / minimum DSCR
+                          / annual mortgage constant
+
+Debt-yield-supported proceeds = applicable annual cash flow / minimum debt yield
+
+Gross proceeds = lowest result among the lender's applicable constraints
+
+Net proceeds available for payoff = gross proceeds − new-loan costs and reserves
+
+Estimated additional cash required = existing payoff + other required obligations
+                                     − net proceeds available for payoff
+```
+
+For fixed-rate monthly amortization, the annual mortgage constant can be derived from monthly rate `r` and amortization months `n` as `12 × r / (1 − (1 + r)^(-n))`. Zero-rate and interest-only cases have separate treatments. Actual lender sizing may apply amortizing debt service during an interest-only period or use stressed rates and floors.
+
+An inapplicable constraint could be explicitly disabled. An applicable constraint with missing inputs would make the full result incomplete. Portfolio loans, mezzanine debt, preferred equity, cross-collateralization and staged construction financing would need more detailed models before their outputs could be interpreted the same way.
+
+**A fully hypothetical example, not current loan pricing:**
+
+| Input or result | Amount |
+|---|---:|
+| Annual NOI and lender cash flow, assumed equal for this example | $1,800,000 |
+| Selected valuation cap rate | 6.00% |
+| Estimated value | $30,000,000 |
+| Maximum LTV | 65% |
+| Loan rate / amortization | 6.50% / 30 years |
+| Minimum DSCR / debt yield | 1.25× / 8.50% |
+| Annual mortgage constant | Approximately 7.5848% |
+| LTV-supported proceeds | $19,500,000 |
+| DSCR-supported proceeds | Approximately $18,985,298 |
+| Debt-yield-supported proceeds | Approximately $21,176,471 |
+| Gross proceeds, DSCR constraint binding | Approximately $18,985,298 |
+| Existing payoff | $24,000,000 |
+| New-loan costs and reserves | $1,000,000 |
+| Additional cash required, before other obligations | Approximately $6,014,702 |
+
+The corresponding screen could read: “Estimated additional cash requirement of $6.01 million under the selected scenario. DSCR limits proceeds. Extension status and actual payoff remain unconfirmed.” Changing NOI, cap rate or lending terms could show a sensitivity table, with every scenario clearly separated from reported facts.
+
+**AI’s role inside the platform**
+
+AI could help extract fields from documents, summarize servicing comments, suggest possible entity matches, translate natural-language searches into visible filters, explain calculations and draft internal research notes with evidence links. Current financial AI workflows already include financial spreading and credit-memo preparation. [Anthropic financial-services capabilities](https://claude.com/solutions/financial-services)
+
+Structured exports could usually enter through normal parsers. OCR could handle scans, followed by schema-based extraction and review of uncertain fields. The application could preserve page or cell references so a reviewer can inspect the exact input.
+
+A model could propose an ownership match; the database could retain the supporting identifiers and review decision. A model could propose a loan interpretation; the source documents and financial engine would remain the basis of the result. An empty source result would remain empty rather than invite a guessed number.
+
+Examples of useful research questions include:
+
+- “Which covered apartment loans have reported maturities in the next year and financials less than 12 months old?”
+- “What changed in this sponsor’s covered portfolio since my last review?”
+- “Which properties fall out of my screen if NOI is 10% lower?”
+- “Which results rely on estimated occupancy or an unconfirmed extension?”
+- “Explain this funding-gap estimate and show the supporting inputs.”
+
+A bounded research session could query authorized sources and prepare a proposed update. Limits on calls, pages, run time and spend could keep ongoing monitoring predictable. External documents and web pages would be treated as evidence, with their contents unable to grant access to other records or change the application’s permissions.
+
+**Possible technical stack**
+
+One plausible starting architecture is a TypeScript web application, PostgreSQL for the core data, a separate background worker, and an optional Python document-processing component. These are candidate choices rather than a prescribed stack or pinned dependency list.
+
+| Component | Candidate | Why it could fit |
+|---|---|---|
+| Web application | Next.js, React and TypeScript | A single application for the research interface and server-side application endpoints. [Next.js docs](https://nextjs.org/docs) |
+| Interface building blocks | Tailwind CSS, shadcn/ui and a configurable table library such as TanStack Table | A compact desktop workspace with consistent controls, filters and editable views. Exact library choices could follow a small interface prototype. |
+| Core data | PostgreSQL with PostGIS | Relational property/loan/source records plus geographic boundaries and spatial searches. [PostGIS in Supabase](https://supabase.com/docs/guides/database/extensions/postgis) |
+| Managed backend option | Supabase | A candidate home for Postgres, authentication and private file storage. Row-level policies could scope records to workspaces. Authorization would still need explicit application design. [RLS documentation](https://supabase.com/docs/guides/database/postgres/row-level-security) |
+| Map | MapLibre GL JS | Interactive geographic inspection. Basemap tiles and geocoding would be separately selected services with their own terms and costs. [MapLibre docs](https://maplibre.org/maplibre-gl-js/docs/) |
+| Background work | A Node worker with pg-boss | Imports, refreshes and extraction jobs backed by PostgreSQL. Job retries would be paired with idempotent processing so reruns do not duplicate records. [pg-boss](https://github.com/timgit/pg-boss) |
+| Document processing | Docling in a Python component | A candidate for PDF layout, table and OCR processing before financial field extraction. A sample of actual documents could establish where it works well. [Docling](https://docling-project.github.io/docling/) |
+| Specialized extraction alternative | Docsumo | An option for difficult rent rolls and T12s if document volume justifies a specialized paid service. [CRE extraction](https://www.docsumo.com/solutions/use-cases/cre-underwriting) |
+| Public-page capture | Direct supported downloads first; Firecrawl where useful | Selected public pages could be converted to text or structured data. County access restrictions and changing page formats would still affect reliability. [Firecrawl scrape](https://docs.firecrawl.dev/features/scrape) |
+| AI | Claude API initially, behind a replaceable model interface | Schema-based extraction, interpretation and evidence-linked explanations. Model selection could follow accuracy, latency and cost comparisons on representative files. |
+| Initial data exchange | CSV/XLSX imports, document uploads, JSON exports | Makes the core workflow usable independently of a particular vendor API. Source IDs and reporting dates would travel with imports. |
+
+The web application and long-running workers could be deployed independently. Large PDF processing and bulk imports would fit background jobs better than browser requests. A single repository could hold the application, financial calculations, source adapters and worker code without requiring a large collection of services.
+
+**A possible data flow**
+
+```mermaid
+flowchart TD
+    A["Public records and licensed data"] --> C["Imports and source snapshots"]
+    B["Authorized document uploads"] --> C
+    C --> D["Extraction and identity matching"]
+    D --> E["Dated observations and review"]
+    E --> F["Financial scenarios and screening rules"]
+    E --> G["AI research with evidence"]
+    F --> H["Table, map and property workspace"]
+    G --> H
+```
+
+Raw files, extracted observations and derived calculations could have separate lifecycles. The system could retain snapshots only where the source license permits storage, with references and retrieval metadata available when full retention is restricted.
+
+**Data relationships that matter**
+
+| Record | Possible purpose |
+|---|---|
+| Workspace and membership | Who can view which private records, uploads and research |
+| Property/community | A canonical apartment property, independent of a vendor name |
+| Parcel | Jurisdiction-specific parcel ID and geometry, linked to the property where established |
+| Entity/person and relationship | Borrower, sponsor, manager, lender and recorded relationships, with dates and evidence |
+| External identifier | Provider property ID, loan ID, parcel ID or filing ID matched to an internal record |
+| Loan/facility | Debt structure, identifiers and supported observations about balances and terms |
+| Loan collateral link | Multiple properties securing one loan, or multiple loans associated with one property |
+| Financial snapshot | Reporting period, financial basis, line items, source and analyst adjustments |
+| Document/source record | File, URL, source date, content hash, access scope and retrieval status |
+| Observation | A field value with its source, period, extraction details and review state |
+| Scenario and result | Selected financial assumptions, input observations, formula version and outputs |
+| Event and screening result | Changes, reasons for inclusion in a screen, rule version and dates |
+| Watchlist/review outcome | Interest, notes, investigation status and what was eventually learned |
+| Import/job run | Progress, errors, affected records, provider usage and repeat-processing protection |
+
+A canonical ID would be more durable than an address alone. Parcel jurisdiction plus parcel ID, vendor identifiers, recorded legal descriptions and loan identifiers could support matching. Similar names and addresses could generate candidates for review. Merges could be reversible.
+
+Multiple buildings and parcels can form one community. One loan can cover several communities. Portfolio totals would count the facility once; property-level debt allocations would be explicit estimates or source-reported allocations. An LLC’s manager, registered agent and ultimate owner would remain different relationship types.
+
+**A staged first version**
+
+| Product stage | Possible scope | What it would establish |
+|---|---|---|
+| Research workspace | A few hundred local records, CSV/XLSX import, uploaded documents, table, map, property detail and notes | Whether the core research workflow is useful with real information |
+| Refinance screening | Evidence-backed debt fields, financial snapshots, scenario calculator, saved filters and explanation panel | Whether screening results are understandable and reproducible |
+| Monitoring | Scheduled source refreshes, deduplicated events, watchlists, import health and in-app alerts | Whether the platform reliably identifies material changes |
+| Licensed intelligence | One selected vendor adapter, with available exports/API/MCP access | Whether purchased coverage materially improves screening quality |
+| Broader research | Additional counties, sponsor portfolio views and selected planning sources | Whether the data model generalizes beyond the opening geography |
+
+These stages could overlap. A paid export might be available on day one, while a direct connection arrives later. A demo dataset could make the interface reviewable, provided it is visibly identified as synthetic and separate from live research.
+
+A first release could stay focused on research and internal review. Outreach automation, transaction execution, nationwide parcel coverage and predictions of default would be possible future discussions rather than dependencies for a usable screener.
+
+**How usefulness could be evaluated**
+
+A reference set of familiar properties and actual source documents could support several concrete comparisons: whether ownership and loan matches are correct; whether extracted amounts and dates match the source; whether refinancing calculations reproduce a checked spreadsheet; and whether alerts identify meaningful changes.
+
+Particularly useful examples would include a loan with an extension, a paid-off mortgage still present in an older dataset, a portfolio loan, conflicting financial periods, duplicate uploads and a property with no loan coverage. Those cases reveal errors that a polished demo can hide.
+
+The most useful operating measures could be coverage of essential fields, age of financial data, incorrect entity matches, extraction correction rate, false screening alerts, source refresh success, and research time per property. “No opportunity found” could remain a valid outcome distinct from “insufficient data.”
+
+For private files or a future multi-user product, authorization checks would cover documents, cached reports, exports and AI retrieval as well as database rows. Model summaries would inherit the permissions of their source material.
+
+**Costs and commercial options**
+
+The budget could be tracked in separate buckets: real estate data licenses, hosting/database/storage, map tiles and geocoding, OCR/document processing, AI usage, and public-page collection. Exact vendor prices have not been established for this project. A demonstration of loan-level coverage on the target properties would be more informative than a broad marketing coverage number.
+
+Caching permitted source results, processing only changed files, extracting structured fields once, and reserving deeper AI analysis for shortlisted properties could control recurring costs. A usage view could show spending by source, document and research session.
+
+An internal tool would offer the simplest opening business case: research time saved, fewer missed events and better-informed deal selection. A later commercial product could offer team subscriptions or market-specific screening workspaces. Vendor rights for storage, AI processing, derived outputs and redistribution would affect that model; a personal data subscription would not automatically authorize a customer-facing resale product.
+
+The proprietary asset could grow from reviewed entity connections, local document knowledge, historical changes, saved underwriting assumptions and investigation outcomes the team is permitted to retain. That accumulated record could make the product increasingly useful even as commercial data providers improve their own search tools.
+
+**Choices still open**
+
+The initial geographic boundary, minimum property size, private-use versus future commercial intent, data budget, preferred licensed provider, deployment environment and tolerance for manual document imports remain product decisions. A coherent default concept is an internal Southwest Florida apartment screener with an import-friendly research workspace, transparent refinancing scenarios, dated evidence, and optional paid-data connections.
+
+The intended daily output is straightforward: a short list of relevant properties or sponsors, a clear explanation of why each appeared, the supporting records, and the unresolved questions worth pursuing.

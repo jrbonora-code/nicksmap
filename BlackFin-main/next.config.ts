@@ -1,0 +1,20 @@
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: "standalone",
+  poweredByHeader: false,
+  async headers() {
+    return [{
+      source: "/:path*",
+      headers: [
+        { key: "X-Content-Type-Options", value: "nosniff" },
+        { key: "X-Frame-Options", value: "DENY" },
+        // External basemaps receive only the app origin, never a private path/query.
+        { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+        { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }
+      ]
+    }];
+  }
+};
+
+export default nextConfig;

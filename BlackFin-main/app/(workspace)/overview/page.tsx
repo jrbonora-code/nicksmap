@@ -1,0 +1,26 @@
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, Building2, FileCheck2, MapPin, SearchCheck, Target } from "lucide-react";
+import { getWorkspaceOverview, getWorkspaceSettings } from "../../../lib/workspace/service";
+import { WorkspaceUnavailableError } from "../../../lib/workspace/errors";
+import { dateLabel, EmptyState, exactDollars, NewDealLink, PageHeading, Panel, StageBadge, STRATEGY_LABELS, UnavailableState } from "../../../components/workspace/ui";
+
+export default async function OverviewPage() {
+  let overview, settings;
+  try { [overview, settings] = await Promise.all([getWorkspaceOverview(), getWorkspaceSettings()]); }
+  catch (error) { if (error instanceof WorkspaceUnavailableError) return <UnavailableState />; throw error; }
+  const metrics = [
+    { label: "Deals in workspace", value: overview.totalDeals, note: "Manually added opportunities", icon: Building2 },
+    { label: "In diligence", value: overview.inDiligence, note: "Current pipeline stage", icon: SearchCheck },
+    { label: "Counties with deals", value: overview.countiesWithDeals, denominator: "/ 67", note: "Florida county representation", icon: MapPin },
+    { label: "Evidence to review", value: overview.unreviewedEvidence, note: "Unreviewed source records", icon: FileCheck2 },
+  ];
+  return <><PageHeading eyebrow="YOUR RESEARCH, IN FOCUS" title="Workspace overview" description="Keep the opportunity, the evidence, and the next decision together."><NewDealLink /></PageHeading>
+    <div className="metric-grid">{metrics.map(({ label, value, note, icon: Icon, denominator }) => <section className="metric-card" key={label}><div className="metric-label">{label}<Icon size={17} /></div><div className="metric-value">{value.toLocaleString()}<span>{denominator}</span></div><p>{note}</p></section>)}</div>
+    <div className="overview-grid"><div className="stack"><Panel title="Recent opportunities" description="Your latest research and deal updates." action={<Link className="text-link" href="/deals">View all deals <ArrowRight size={15} /></Link>}>
+      {overview.recentDeals.length ? <div className="table-scroll" role="region" aria-label="Recent opportunities table" tabIndex={0}><table className="data-table"><thead><tr><th scope="col">Property / opportunity</th><th scope="col">Stage</th><th scope="col" className="numeric">Asking price · USD</th><th scope="col">Updated</th></tr></thead><tbody>{overview.recentDeals.map(deal => <tr key={deal.id}><td><Link href={`/deals/${deal.id}`} className="table-title">{deal.name}</Link><div className="table-subtitle">{deal.countyName} County · {STRATEGY_LABELS[deal.strategy]}</div></td><td><StageBadge stage={deal.stage} /></td><td className={`numeric ${deal.askingPriceCents === null ? "unknown" : ""}`}>{deal.askingPriceCents === null ? "Unknown" : exactDollars(deal.askingPriceCents)}</td><td className="nowrap muted">{dateLabel(deal.updatedAt)}</td></tr>)}</tbody></table></div> : <EmptyState title="Start with a deal worth investigating" description="Add a property, recapitalization, or development opportunity. Build the evidence before making the call." action={<NewDealLink />} />}
+    </Panel><Panel title="A clear path to a decision" description="A working process for your own investments."><ol className="workflow-steps"><li><span>01</span><div><strong>Capture the opportunity</strong><p>Record the location, strategy, and why now.</p></div></li><li><span>02</span><div><strong>Build the evidence</strong><p>Date your sources and surface unresolved facts.</p></div></li><li><span>03</span><div><strong>Review and decide</strong><p>Preserve the evidence and your next move.</p></div></li></ol></Panel></div>
+    <div className="stack"><section className="statewide-card"><div className="statewide-symbol"><MapPin size={30} strokeWidth={1.25} /></div><span className="eyebrow">FLORIDA OPPORTUNITY SET</span><h2>Local judgment.<br />Statewide reach.</h2><p>All 67 counties are in scope. Research coverage grows with verified source work.</p><Link className="button button-light" href="/counties">Explore county coverage <ArrowUpRight size={16} /></Link></section>
+    <Panel title="Investment mandate"><div className="panel-body"><span className={`badge ${settings.mandate.status === "reviewed" ? "badge-green" : "badge-amber"}`}>{settings.mandate.status === "unconfigured" ? "Not yet defined" : settings.mandate.status === "draft" ? "Draft · needs review" : "Reviewed"}</span><p className="body-copy">{settings.mandate.status === "unconfigured" ? "Define your buy box, available capital, and downside limits. No return hurdles or grades are assumed." : "Keep your investment policy explicit and separate from source observations and screening arithmetic."}</p><Link className="text-link" href="/settings"><Target size={15} />{settings.mandate.status === "unconfigured" ? "Set the working mandate" : "Review the working mandate"}<ArrowRight size={15} /></Link></div></Panel>
+    <div className="quiet-note"><FileCheck2 size={17} /><p><strong>{overview.snapshotCount} decision {overview.snapshotCount === 1 ? "snapshot" : "snapshots"}</strong><br />Saved inputs and evidence remain attached to each decision.</p></div></div></div>
+  </>;
+}

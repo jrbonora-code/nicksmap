@@ -1,0 +1,50 @@
+name: County records watch
+# Weekly list of the Hillsborough and Pinellas clerks' daily official-records files against data/debt/clerk-baseline.json.
+# Read-only: no secret, no database, no deployment, nothing downloaded beyond the two directory listings. Pinellas keeps
+# about one week of files online and Hillsborough about two months, so when new days are waiting it opens, or updates,
+# the one issue titled "County records waiting": run `node scripts/debt-refresh.mjs` and import the bundle before they
+# roll off.
+on:
+  schedule:
+    - cron: '30 13 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: debt-watch
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # The check imports only Node built-ins and the repository's own scripts, so no npm install is needed.
+      - name: List the clerks' daily files
+        id: check
+        shell: bash
+        run: |
+          set +e
+          node scripts/debt-refresh.mjs --check --report debt-report.md
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -ge 2 ]; then exit "$code"; fi
+          exit 0
+      - name: Open or update the issue
+        if: steps.check.outputs.code == '1'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: County records waiting
+        run: |
+          number=$(gh issue list --state open --search "\"$TITLE\" in:title" --json number,title --jq "map(select(.title == env.TITLE)) | .[0].number // empty")
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body-file debt-report.md
+            gh issue comment "$number" --body "Re-checked $(date -u +%Y-%m-%d). The issue body holds the latest report."
+          else
+            gh issue create --title "$TITLE" --body-file debt-report.md
+          fi

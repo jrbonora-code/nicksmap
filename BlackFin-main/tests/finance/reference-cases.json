@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "screening-0.2.0",
+  "reviewStatus": "engineering_reference_only",
+  "independentFinancialReviewer": null,
+  "notes": "Synthetic arithmetic and published examples, not actual project outcomes. Expected values are fixed independently of the implementation. Do not regenerate them from production functions.",
+  "operating": {
+    "id": "annual-acquisition-hand-check",
+    "provenance": "Hand arithmetic: 360000 - 18000 - 6000 - 3000 + 12000 = 345000 EGI; less 145000 expenses = 200000 NOI; less 10000 reserves = 190000; less 125000 debt service = 65000. Ratios use these totals.",
+    "input": {
+      "currency": "USD", "period": "annual", "unitCount": 20,
+      "grossPotentialRentCents": 36000000,
+      "vacancyLossCents": 1800000,
+      "concessionsCents": 600000,
+      "creditLossCents": 300000,
+      "otherIncomeCents": 1200000,
+      "operatingExpensesCents": 14500000,
+      "replacementReservesCents": 1000000,
+      "annualDebtServiceCents": 12500000,
+      "loanBalanceCents": 200000000,
+      "purchasePriceCents": 400000000,
+      "totalCostCents": 500000000
+    },
+    "expected": {
+      "effectiveGrossIncomeCents": 34500000,
+      "noiCents": 20000000,
+      "cashFlowAfterReservesCents": 19000000,
+      "cashFlowAfterDebtServiceCents": 6500000,
+      "dscrAfterReserves": 1.52,
+      "debtYieldOnNoi": 0.1,
+      "entryCapRate": 0.05,
+      "yieldOnCost": 0.04,
+      "loanToCost": 0.4,
+      "pricePerUnitCents": 20000000
+    }
+  },
+  "payment": {
+    "id": "microsoft-pmt-end-of-month",
+    "source": "https://support.microsoft.com/en-us/excel/functions/pmt-function",
+    "provenance": "Published PMT example: 10000 USD principal, 8% annual nominal rate, ten monthly end-of-period payments. This API returns the positive payment magnitude.",
+    "input": { "currency": "USD", "principalCents": 1000000, "annualRate": 0.08, "amortizationMonths": 10 },
+    "expectedPaymentCents": 103703,
+    "absoluteToleranceCents": 0.5
+  },
+  "datedNpv": {
+    "id": "microsoft-xnpv-irregular-dates",
+    "source": "https://support.microsoft.com/en-us/excel/functions/xnpv-function",
+    "provenance": "Published irregular-date XNPV example with an Actual/365 discount convention; expected output is published to two decimal places in USD.",
+    "input": {
+      "currency": "USD", "annualDiscountRate": 0.09,
+      "cashFlows": [
+        { "id": "initial", "date": "2008-01-01", "amountCents": -1000000 },
+        { "id": "a", "date": "2008-03-01", "amountCents": 275000 },
+        { "id": "b", "date": "2008-10-30", "amountCents": 425000 },
+        { "id": "c", "date": "2009-02-15", "amountCents": 325000 },
+        { "id": "d", "date": "2009-04-01", "amountCents": 275000 }
+      ]
+    },
+    "expectedNpvCents": 208665,
+    "absoluteToleranceCents": 0.5
+  },
+  "datedNpvPrecision": {
+    "provenance": "Independent review F1 integer oracle and explicit binary64 support-envelope boundaries. For a 100% rate at exactly one Actual/365 year, a receipt of twice the opening contribution has exact zero NPV by integer division. The boundaries describe support, not different mathematical answers.",
+    "absoluteToleranceCents": 0.01,
+    "supportedBoundary": {
+      "input": { "currency": "USD", "annualDiscountRate": 1, "cashFlows": [
+        { "id": "opening", "date": "2025-01-01", "amountCents": -135000000000 },
+        { "id": "receipt", "date": "2026-01-01", "amountCents": 270000000000 }
+      ] },
+      "expectedNpvCents": 0
+    },
+    "unsupportedBoundary": {
+      "input": { "currency": "USD", "annualDiscountRate": 1, "cashFlows": [
+        { "id": "opening", "date": "2025-01-01", "amountCents": -136000000000 },
+        { "id": "receipt", "date": "2026-01-01", "amountCents": 272000000000 }
+      ] },
+      "expectedIssue": "NPV_PRECISION_UNSUPPORTED",
+      "mathematicalNpvCents": 0
+    },
+    "decimalProvenance": "Fixed 100-digit Python Decimal evaluation of amount/(1+Decimal(rate))**(integer_calendar_days/365), using datetime.date day differences and canonical decimal rates; generated independently of the production code on 2026-09-12. Displayed expectations retain more precision than the 0.01-cent acceptance tolerance.",
+    "decimalCases": [
+      {
+        "id": "large-irregular-dates",
+        "input": { "currency": "USD", "annualDiscountRate": 0.09, "cashFlows": [
+          { "id": "opening", "date": "2025-01-01", "amountCents": -100000000000 },
+          { "id": "a", "date": "2025-07-01", "amountCents": 30000000000 },
+          { "id": "b", "date": "2026-04-03", "amountCents": 70000000000 },
+          { "id": "c", "date": "2029-12-31", "amountCents": 50000000000 }
+        ] },
+        "expectedNpvCents": 24081802110.915788154868605621359221024640
+      },
+      {
+        "id": "large-negative-rate-thirty-years",
+        "input": { "currency": "USD", "annualDiscountRate": -0.1, "cashFlows": [
+          { "id": "opening", "date": "2025-01-01", "amountCents": -50000000000 },
+          { "id": "receipt", "date": "2054-12-25", "amountCents": 3000000000 }
+        ] },
+        "expectedNpvCents": 20769474627.777185710330861382736095133578
+      },
+      {
+        "id": "large-leap-day",
+        "input": { "currency": "USD", "annualDiscountRate": 0.21, "cashFlows": [
+          { "id": "opening", "date": "2024-01-01", "amountCents": -100000000000 },
+          { "id": "receipt", "date": "2025-01-01", "amountCents": 121000000000 }
+        ] },
+        "expectedNpvCents": -52211121.305113450212153930222158722366
+      }
+    ]
+  },
+  "debtSizing": {
+    "id": "four-constraint-hand-check",
+    "provenance": "LTV cap 7.5m, LTC cap 8.4m, after-reserve DSCR cap 8m, NOI debt-yield cap 9m. Minimum is 7.5m. These are arbitrary test parameters, not lender policy.",
+    "input": {
+      "currency": "USD", "period": "annual",
+      "propertyValueCents": 1000000000, "totalCostCents": 1200000000,
+      "annualNoiCents": 90000000, "annualCashFlowAfterReservesCents": 80000000,
+      "annualMortgageConstant": 0.08, "maxLtv": 0.75, "maxLtc": 0.7, "minDscr": 1.25, "minDebtYield": 0.1
+    },
+    "expected": { "maximumLoanCents": 750000000, "limitsCents": { "ltv": 750000000, "ltc": 840000000, "dscr": 800000000, "debtYield": 900000000 }, "bindingConstraints": ["ltv"] }
+  }
+}
